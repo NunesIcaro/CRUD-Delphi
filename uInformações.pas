@@ -1,8 +1,8 @@
-unit uCargos;
+unit uInformações;
 
 interface
 
-type Cargos = class
+type TCargos = class
 
 end;
 
