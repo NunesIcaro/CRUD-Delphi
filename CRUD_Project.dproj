@@ -132,6 +132,13 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="uEstudantes.pas"/>
+        <DCCReference Include="uProfessores.pas"/>
+        <DCCReference Include="uDisciplinas.pas"/>
+        <DCCReference Include="uTurmas.pas"/>
+        <DCCReference Include="uMatriculas.pas"/>
+        <DCCReference Include="uLogin.pas"/>
+        <DCCReference Include="uCargos.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
