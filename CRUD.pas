@@ -11,9 +11,7 @@ uses
 
 type
   TForm1 = class(TForm)
-    FDConnection1: TFDConnection;
-    FDPhysPgDriverLink1: TFDPhysPgDriverLink;
-    procedure FDPhysPgDriverLink1DriverCreated(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -27,9 +25,6 @@ implementation
 
 {$R *.dfm}
 
-procedure TForm1.FDPhysPgDriverLink1DriverCreated(Sender: TObject);
-begin
-FDPhysPgDriverLink1.VendorLib := 'C:\Users\Ícaro Nunes\Desktop\CRUD - Delphi\postgres\libpq.dll';
-end;
+
 
 end.

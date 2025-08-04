@@ -11,18 +11,4 @@ object Form1: TForm1
   Font.Name = 'Segoe UI'
   Font.Style = []
   TextHeight = 15
-  object FDConnection1: TFDConnection
-    Params.Strings = (
-      'Database=CRUD_db'
-      'User_Name=postgres'
-      'Password=root'
-      'Server=localhost'
-      'DriverID=PG')
-    Connected = True
-    Top = 56
-  end
-  object FDPhysPgDriverLink1: TFDPhysPgDriverLink
-    VendorLib = 'C:\Users\'#205'caro Nunes\Desktop\CRUD - Delphi\lib\libpq.dll'
-    OnDriverCreated = FDPhysPgDriverLink1DriverCreated
-  end
 end
