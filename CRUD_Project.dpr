@@ -10,7 +10,9 @@ uses
   uTurmas in 'uTurmas.pas',
   uMatriculas in 'uMatriculas.pas',
   uLogin in 'uLogin.pas',
-  uInformações in 'uInformações.pas';
+  uInformacoes in 'uInformacoes.pas',
+  uCadastro in 'uCadastro.pas',
+  uEstudantesDAO in 'uEstudantesDAO.pas';
 
 {$R *.res}
 

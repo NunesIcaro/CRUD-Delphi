@@ -138,7 +138,9 @@
         <DCCReference Include="uTurmas.pas"/>
         <DCCReference Include="uMatriculas.pas"/>
         <DCCReference Include="uLogin.pas"/>
-        <DCCReference Include="uInformações.pas"/>
+        <DCCReference Include="uInformacoes.pas"/>
+        <DCCReference Include="uCadastro.pas"/>
+        <DCCReference Include="uEstudantesDAO.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -19,7 +19,9 @@ object DataModule1: TDataModule1
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
-    Left = 304
-    Top = 224
+    SQL.Strings = (
+      '')
+    Left = 192
+    Top = 96
   end
 end
