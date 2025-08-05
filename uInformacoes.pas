@@ -2,33 +2,33 @@ unit uInformacoes;
 
 interface
 
-type TInformacoes = class
-   protected
-   //Atributos
+type
+  TInformacoes = class
+  Protected
+    // Atributos
+    Nome: String;
+    CPF: String;
+  Public
+    // Properties
+    property pNome: String read Nome write Nome;
+    property pCPF: String read CPF write CPF;
 
-   Nome: String;
-   CPF: String;
+    // Getters e Setters
 
-   public
-   //Getters e Setters
+    function getNome: String;
+    procedure setNome(aNome: String);
 
-   function getNome: String;
-   procedure setNome(aNome: String);
+    function getCPF: String;
+    procedure setCPF(aCPF: String);
 
-   function getCPF: String;
-   procedure setCPF (aCPF: String);
-
-end;
-
-
-
+  end;
 
 implementation
 
 { TInformacoes }
-//Getters
+// Getters
 
-//Getter do CPF
+// Getter do CPF
 function TInformacoes.getCPF: String;
 begin
   Result := Self.CPF;
@@ -36,23 +36,22 @@ end;
 
 
 
-//Getter do Nome
+// Getter do Nome
 
 function TInformacoes.getNome: String;
 begin
   Result := Self.Nome;
 end;
 
-//Setters
+// Setters
 
-
-//Setter do CPF
+// Setter do CPF
 procedure TInformacoes.setCPF(aCPF: String);
 begin
   Self.CPF := aCPF;
 end;
 
-//Setter do Nome
+// Setter do Nome
 procedure TInformacoes.setNome(aNome: String);
 begin
   Self.Nome := aNome;
