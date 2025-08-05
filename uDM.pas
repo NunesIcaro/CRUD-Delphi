@@ -11,7 +11,7 @@ uses
   FireDAC.Comp.Client;
 
 type
-  TDataModule1 = class(TDataModule)
+  TDM = class(TDataModule)
     FDPhysPgDriverLink1: TFDPhysPgDriverLink;
     FDConnection1: TFDConnection;
     FDQuery1: TFDQuery;
@@ -22,7 +22,7 @@ type
   end;
 
 var
-  DataModule1: TDataModule1;
+  DM: TDM;
 
 implementation
 

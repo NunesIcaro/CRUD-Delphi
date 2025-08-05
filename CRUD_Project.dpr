@@ -3,7 +3,7 @@ program CRUD_Project;
 uses
   Vcl.Forms,
   CRUD in 'CRUD.pas' {Form1},
-  uDM in 'uDM.pas' {DataModule1: TDataModule},
+  uDM in 'uDM.pas' {DM: TDataModule},
   uEstudantes in 'uEstudantes.pas',
   uProfessores in 'uProfessores.pas',
   uDisciplinas in 'uDisciplinas.pas',
@@ -20,6 +20,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TForm1, Form1);
-  Application.CreateForm(TDataModule1, DataModule1);
+  Application.CreateForm(TDM, DM);
   Application.Run;
 end.

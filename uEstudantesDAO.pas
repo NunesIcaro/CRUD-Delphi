@@ -2,12 +2,12 @@ unit uEstudantesDAO;
 
 interface
 
-uses uEstudantes, FireDac.Comp.Client;
+uses uEstudantes, FireDac.Comp.Client, System.SysUtils;
 
 type TEstudantesDAO = class
 
   public
-  procedure Inserir(const aEstudantes: TEstudantes; const aConnection: TFDConnection);
+  class procedure Inserir(const aEstudantes: TEstudantes; const aConnection: TFDConnection);
 
 end;
 
@@ -15,10 +15,16 @@ implementation
 
 { TInformacoesDAO }
 
-procedure TEstudantesDAO.Inserir(const aEstudantes: TEstudantes;
+class procedure TEstudantesDAO.Inserir(const aEstudantes: TEstudantes;
   const aConnection: TFDConnection);
 var Query : TFDQuery;
 begin
+    if not Assigned(aEstudantes) then
+    raise Exception.Create('Estudante não pode ser nil');
+
+  if not Assigned(aConnection) then
+    raise Exception.Create('Conexão inválida');
+
   Query := TFDQuery.Create(nil);
   try
     Query.Connection := aConnection;
