@@ -2,8 +2,9 @@ unit uInformações;
 
 interface
 
-type TCargos = class
-
+type TInformacoes = class
+   Nome: String;
+   CPF: String;
 end;
 
 
