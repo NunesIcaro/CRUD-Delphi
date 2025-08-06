@@ -1,6 +1,6 @@
 unit uProfessoresDAO;
 interface
-uses uProfessores, FireDAC.Comp.Client, System.SysUtils;
+uses uProfessores, FireDAC.Comp.Client, System.SysUtils,FireDAC.Stan.Param;
 
 type TProfessoresDAO = class
   public
