@@ -2,7 +2,9 @@ object DM: TDM
   Height = 480
   Width = 640
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
-    VendorLib = 'C:\Users\'#205'caro Nunes\Desktop\CRUD-Delphi\lib\libpq.dll'
+    VendorLib = 
+      'C:\Users\'#205'caro Nunes\Desktop\CRUD-Delphi\Win32\Debug\lib\libpq.d' +
+      'll'
     Left = 88
     Top = 96
   end
