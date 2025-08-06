@@ -6,8 +6,6 @@ uses uInformacoes, uTurmas;
 
 type TEstudantes = class (TInformacoes)
     IDEstudantes: integer;
-//    Nome: String;
-//    CPF: String;
     Turma: String;
 
     //Getters e Setters

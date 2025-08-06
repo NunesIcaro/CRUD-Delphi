@@ -12,7 +12,8 @@ uses
   uLogin in 'uLogin.pas',
   uInformacoes in 'uInformacoes.pas',
   uCadastro in 'uCadastro.pas',
-  uEstudantesDAO in 'uEstudantesDAO.pas';
+  uEstudantesDAO in 'uEstudantesDAO.pas',
+  uProfessoresDAO in 'uProfessoresDAO.pas';
 
 {$R *.res}
 

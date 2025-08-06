@@ -141,6 +141,7 @@
         <DCCReference Include="uInformacoes.pas"/>
         <DCCReference Include="uCadastro.pas"/>
         <DCCReference Include="uEstudantesDAO.pas"/>
+        <DCCReference Include="uProfessoresDAO.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -172,12 +173,6 @@
                 <DeployFile LocalName="Win64\Debug\CRUD_Project.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win64">
                         <RemoteName>CRUD_Project.exe</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Win64\Debug\CRUD_Project.rsm" Configuration="Debug" Class="DebugSymbols">
-                    <Platform Name="Win64">
-                        <RemoteName>CRUD_Project.rsm</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
