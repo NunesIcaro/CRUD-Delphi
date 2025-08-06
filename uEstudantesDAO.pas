@@ -19,8 +19,8 @@ class procedure TEstudantesDAO.Inserir(const aEstudantes: TEstudantes;
   const aConnection: TFDConnection);
 var Query : TFDQuery;
 begin
-    if not Assigned(aEstudantes) then
-    raise Exception.Create('Estudante não pode ser nil');
+  if not Assigned(aEstudantes) then
+  raise Exception.Create('Estudante não pode ser nil');
 
   if not Assigned(aConnection) then
     raise Exception.Create('Conexão inválida');
