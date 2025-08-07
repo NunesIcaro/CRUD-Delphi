@@ -1,6 +1,6 @@
-unit uLogin;
+unit uCadastroDAO;
+
 interface
-uses uCadastro;
 
 implementation
 

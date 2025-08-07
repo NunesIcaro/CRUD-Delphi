@@ -13,7 +13,9 @@ uses
   uInformacoes in 'uInformacoes.pas',
   uCadastro in 'uCadastro.pas',
   uEstudantesDAO in 'uEstudantesDAO.pas',
-  uProfessoresDAO in 'uProfessoresDAO.pas';
+  uProfessoresDAO in 'uProfessoresDAO.pas',
+  uLoginDAO in 'uLoginDAO.pas',
+  uCadastroDAO in 'uCadastroDAO.pas';
 
 {$R *.res}
 
