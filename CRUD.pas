@@ -11,18 +11,21 @@ uses
   Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Imaging.pngimage;
 
 type
-  TForm1 = class(TForm)
+  TLogin = class(TForm)
     Panel1: TPanel;
     img_login: TImage;
     pnl_login: TPanel;
-    ed_Password: TEdit;
-    ed_User: TEdit;
     img_LoginText: TImage;
     lbl_User: TLabel;
     lbl_Password: TLabel;
+    ed_Password: TEdit;
+    ed_User: TEdit;
+    btn_Entrar: TButton;
+    lbl_btn_Cad: TLabel;
 //    procedure btn_Salvar1Click(Sender: TObject);
    procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
+
 
 //    procedure btn_Salvar2Click(Sender: TObject);
 
@@ -37,7 +40,7 @@ type
   end;
 
 var
-  Form1: TForm1;
+  Login: TLogin;
 
 
 implementation
@@ -79,7 +82,7 @@ implementation
 
 
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TLogin.FormCreate(Sender: TObject);
 begin
 //  WindowState := wsMaximized;
 end;
@@ -89,18 +92,26 @@ end;
 
 
 
-procedure TForm1.FormResize(Sender: TObject);
+procedure TLogin.FormResize(Sender: TObject);
 begin
   if (WindowState = wsMaximized) then begin
-    ed_Password.Margins.Bottom := 350;
-    ed_User.Margins.Bottom := 100;
+    pnl_login.Width := 500;
+    img_LoginText.Height := 170;
+    btn_Entrar.Margins.Bottom := 306;
+    lbl_User.Margins.Top:= 200;
+    img_logintext.Margins.Top := 100;
 
 
   end else begin
-    ed_Password.Margins.Bottom := 225;
-    ed_User.Margins.Bottom := 50;
+    pnl_login.Width := 380;
+    img_LoginText.Height := 121;
+    btn_Entrar.Margins.Bottom := 140;
+    lbl_User.Margins.Top := 50;
+    img_logintext.Margins.Top := 50;
   end;
 end;
+
+
 
 
 

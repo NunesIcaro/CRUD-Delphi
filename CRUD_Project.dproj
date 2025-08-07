@@ -124,7 +124,7 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="CRUD.pas">
-            <Form>Form1</Form>
+            <Form>Login</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uDM.pas">
