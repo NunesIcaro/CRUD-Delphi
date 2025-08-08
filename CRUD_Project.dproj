@@ -123,8 +123,8 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="CRUD.pas">
-            <Form>Login</Form>
+        <DCCReference Include="uLoginForm.pas">
+            <Form>f_Login</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uDM.pas">
@@ -144,6 +144,10 @@
         <DCCReference Include="uProfessoresDAO.pas"/>
         <DCCReference Include="uLoginDAO.pas"/>
         <DCCReference Include="uCadastroDAO.pas"/>
+        <DCCReference Include="uCadastroForm.pas">
+            <Form>f_Cadastro</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

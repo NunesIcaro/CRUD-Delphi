@@ -2,7 +2,7 @@ program CRUD_Project;
 
 uses
   Vcl.Forms,
-  CRUD in 'CRUD.pas' {Login},
+  uLoginForm in 'uLoginForm.pas' {f_Login},
   uDM in 'uDM.pas' {DM: TDataModule},
   uEstudantes in 'uEstudantes.pas',
   uProfessores in 'uProfessores.pas',
@@ -15,14 +15,16 @@ uses
   uEstudantesDAO in 'uEstudantesDAO.pas',
   uProfessoresDAO in 'uProfessoresDAO.pas',
   uLoginDAO in 'uLoginDAO.pas',
-  uCadastroDAO in 'uCadastroDAO.pas';
+  uCadastroDAO in 'uCadastroDAO.pas',
+  uCadastroForm in 'uCadastroForm.pas' {f_Cadastro};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TLogin, Login);
+  Application.CreateForm(Tf_Login, f_Login);
   Application.CreateForm(TDM, DM);
+  Application.CreateForm(Tf_Cadastro, f_Cadastro);
   Application.Run;
 end.

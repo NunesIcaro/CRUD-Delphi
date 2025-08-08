@@ -8,7 +8,7 @@ type
   TCadastroDAO = class
 
   public
-    class procedure Inserir(const aEstudantes: TCadastro;
+    class procedure Inserir(const aCadastro: TCadastro;
       const aConnection: TFDConnection);
 
   end;
@@ -17,7 +17,7 @@ implementation
 
 { TCadastroDAO }
 
-class procedure TCadastroDAO.Inserir(const aEstudantes: TCadastro;
+class procedure TCadastroDAO.Inserir(const aCadastro: TCadastro;
   const aConnection: TFDConnection);
 var
   Query: TFDQuery;
@@ -26,10 +26,9 @@ begin
   try
     Query.Connection := aConnection;
     Query.SQL.Text := 'INSERT INTO users (users_codigo, users_login, users_password) VALUES (:CodigoUser, :NomeLog, :SenhaLog)';
-//    Query.ParamByName('IDEstudantes').AsInteger := aEstudantes.IDEstudantes;
-//    Query.ParamByName('Nome').AsString := aEstudantes.pNome;
-//    Query.ParamByName('CPF').AsString := aEstudantes.pCPF;
-//    Query.ParamByName('Turma').AsString := aEstudantes.Turma;
+    Query.ParamByName('CodigoUser').AsInteger := aCadastro.pCodigoUser;
+    Query.ParamByName('NomeLog').AsString := aCadastro.pNomeLog;
+    Query.ParamByName('SenhaLog').AsString := aCadastro.pSenhaLog;
 
     Query.ExecSQL;
   finally

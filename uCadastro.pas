@@ -15,6 +15,7 @@ type TCadastro = class
     // Properties
     property pNomeLog: String read NomeLog write NomeLog;
     property pSenhaLog: String read SenhaLog write SenhaLog;
+    property pCodigoUser: Integer read CodigoUser write CodigoUser;
 
     // Getters e Setters
 
@@ -70,7 +71,7 @@ end;
 //Setter do CodigoUser
 procedure TCadastro.setCodigoUser(aCodigoUser: Integer);
 begin
-  SSSSelf.CodigoUser := aCodigoUser;
+  Self.CodigoUser := aCodigoUser;
 end;
 
 
