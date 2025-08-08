@@ -29,14 +29,14 @@ implementation
 
 function TLogin.getNomeLog: String;
 begin
-
+  Result := Self.NomeLog;
 end;
 
 //Getter da Senha
 
 function TLogin.getSenhaLog: String;
 begin
-
+  Result := Self.SenhaLog;
 end;
 
 //Setters
@@ -45,16 +45,15 @@ end;
 
 procedure TLogin.setNomeLog(aNomeLog: String);
 begin
-
+  Self.NomeLog := aNomeLog;
 end;
 
 //Setter da Senha
 
 procedure TLogin.setSenhaLog(aSenhaLog: String);
 begin
-
+  Self.SenhaLog := aSenhaLog;
 end;
 
-//COMITTAR assim que puder -> Fiz o cadastroDAO e Comecei os Setters e os Getters do Login, amanhã acabar a query do login (SELECT)
 
 end.

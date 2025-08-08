@@ -109,6 +109,8 @@ begin
     btn_Entrar.Margins.Bottom := 140;
     lbl_User.Margins.Top := 50;
     img_logintext.Margins.Top := 50;
+    lbl_btn_Cad.Top := 80;
+    lbl_btn_Cad.Left := 405;
   end;
 end;
 
