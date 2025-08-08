@@ -125,6 +125,9 @@ begin
     btn_Entrar.Margins.Bottom := 306;
     lbl_User.Margins.Top:= 200;
     img_logintext.Margins.Top := 100;
+    lbl_btn_Cad.Top := 115;
+    lbl_btn_Cad.Left := 825;
+    lbl_btn_Cad.Font.Size := 24;
 
 
   end else begin
@@ -133,8 +136,9 @@ begin
     btn_Entrar.Margins.Bottom := 140;
     lbl_User.Margins.Top := 50;
     img_logintext.Margins.Top := 50;
-    lbl_btn_Cad.Top := 80;
-    lbl_btn_Cad.Left := 405;
+    lbl_btn_Cad.Top := 72;
+    lbl_btn_Cad.Left := 440;
+    lbl_btn_Cad.Font.Size := 12;
   end;
 end;
 
@@ -147,7 +151,7 @@ end;
 procedure Tf_Login.lbl_btn_CadClick(Sender: TObject);
 begin
   f_Login.Hide;
-  f_Cadastro.Show;
+  f_Cadastro.ShowModal;
 end;
 
 end.
