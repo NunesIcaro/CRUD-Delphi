@@ -16,7 +16,10 @@ uses
   uProfessoresDAO in 'uProfessoresDAO.pas',
   uLoginDAO in 'uLoginDAO.pas',
   uCadastroDAO in 'uCadastroDAO.pas',
-  uCadastroForm in 'uCadastroForm.pas' {f_Cadastro};
+  uCadastroForm in 'uCadastroForm.pas' {f_Cadastro},
+  uTurmasDAO in 'uTurmasDAO.pas',
+  uDisciplinasDAO in 'uDisciplinasDAO.pas',
+  uMatriculasDAO in 'uMatriculasDAO.pas';
 
 {$R *.res}
 

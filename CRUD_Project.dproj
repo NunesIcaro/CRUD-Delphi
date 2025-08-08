@@ -148,6 +148,9 @@
             <Form>f_Cadastro</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="uTurmasDAO.pas"/>
+        <DCCReference Include="uDisciplinasDAO.pas"/>
+        <DCCReference Include="uMatriculasDAO.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
