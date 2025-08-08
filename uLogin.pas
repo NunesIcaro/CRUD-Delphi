@@ -5,7 +5,6 @@ uses uCadastro;
 type TLogin = class(TCadastro)
 
   public
-
   //Getters e Setters
 
   function getNomeLog: String;

@@ -4,7 +4,7 @@ uses uLogin,FireDac.Comp.Client, System.SysUtils,FireDAC.Stan.Param;
 
 type TLoginDao = class
 
-class procedure Selecionar(aLogin: Tlogin; aConnection: TFDConnection);
+  class function ValidarLogin(aLogin: Tlogin; aConnection: TFDConnection): Boolean;
 
 end;
 
@@ -12,20 +12,22 @@ implementation
 
 { TLoginDao }
 
-class procedure TLoginDao.Selecionar(aLogin: Tlogin;
-  aConnection: TFDConnection);
+class function TLoginDao.ValidarLogin(aLogin: Tlogin;
+  aConnection: TFDConnection): Boolean;
 var Query : TFDQuery;
+
 begin
   Query := TFDQuery.Create(nil);
   try
     Query.Connection := aConnection;
     Query.Close;
-    Query.SQL.Text := 'SELECT users_Login, users_Password FROM users WHERE users_login = :login, users_Password = :Senha';
+    Query.SQL.Text := 'SELECT users_login, users_password FROM users WHERE users_login = :login AND users_password = :senha';
     Query.ParamByName('login').AsString := aLogin.pNomeLog;
-    Query.ParamByName('Senha').AsString := aLogin.pSenhaLog;
+    Query.ParamByName('senha').AsString := aLogin.pSenhaLog;
     Query.Open;
+
+    Result := not Query.IsEmpty;
   finally
-    Query.Free;
   end;
 end;
 

@@ -7,8 +7,9 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.PG,
-  FireDAC.Phys.PGDef, FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client, uEstudantes, uInformacoes,uEstudantesDAO, uDM,uProfessores,uProfessoresDAO,
-  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Imaging.pngimage, uCadastroForm;
+  FireDAC.Phys.PGDef, FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client, uEstudantes, uInformacoes,
+  uEstudantesDAO, uDM,uProfessores,uProfessoresDAO, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
+  uCadastroForm, uLoginDAO, uLogin, uCadastro, uCadastroDAO;
 
 type
   Tf_Login = class(TForm)
@@ -26,6 +27,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure lbl_btn_CadClick(Sender: TObject);
+    procedure btn_EntrarClick(Sender: TObject);
 
 
 //    procedure btn_Salvar2Click(Sender: TObject);
@@ -83,6 +85,28 @@ implementation
 
 
 
+procedure Tf_Login.btn_EntrarClick(Sender: TObject);
+var Login : Tlogin;
+begin
+  Login := Tlogin.Create;
+  try
+    Login.pNomeLog := ed_User.Text;
+    Login.pSenhaLog := ed_Password.Text;
+
+
+    if TLoginDAO.ValidarLogin(Login,DM.FDConnection1) then begin
+      ShowMessage('Conectado com Sucesso');
+    end else begin
+      ShowMessage('Usuário ou Senha Incorretos');
+    end;
+
+  finally
+    Login.Free;
+  end;
+
+
+end;
+
 procedure Tf_Login.FormCreate(Sender: TObject);
 begin
 //  WindowState := wsMaximized;
@@ -113,6 +137,8 @@ begin
     lbl_btn_Cad.Left := 405;
   end;
 end;
+
+
 
 
 
