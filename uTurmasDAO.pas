@@ -25,11 +25,9 @@ begin
   Query := TFDQuery.Create(nil);
   try
     Query.Connection := aConnection;
-    Query.SQL.Text := 'INSERT INTO estudantes (estu_codigo, estu_nome, estu_cpf, estu_turmas_codigo) VALUES (:IDEstudantes, :Nome, :CPF, :Turma)';
-    Query.ParamByName('IDEstudantes').AsInteger := aEstudantes.IDEstudantes;
-    Query.ParamByName('Nome').AsString := aEstudantes.pNome;
-    Query.ParamByName('CPF').AsString := aEstudantes.pCPF;
-    Query.ParamByName('Turma').AsString := aEstudantes.Turma;
+    Query.SQL.Text := 'INSERT INTO turmas (turmas_codigo, turmas_prof_codigo,turmas_disc_codigo) VALUES (nextval(''Seq_turmas_codigo''), :CodigoProfT, :CodigoDiscT)';
+    Query.ParamByName('CodigoProfT').AsInteger := aTurmas.pCodigoProfT;
+    Query.ParamByName('CodigoDiscT').AsInteger := aTurmas.pCodigoDiscT;
 
     Query.ExecSQL;
   finally

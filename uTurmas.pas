@@ -5,21 +5,21 @@ type TTurmas = class
   protected
   //Atributos
   CodigoTurma : Integer;
-  CodigoProf : Integer;
+  CodigoProfT : Integer;
   CodigoDiscT : Integer;
 
   public
   //Properties
   property pCodigoTurma: Integer read CodigoTurma write CodigoTurma;
-  property pCodigoProf: Integer read CodigoProf write CodigoProf;
+  property pCodigoProfT: Integer read CodigoProfT write CodigoProfT;
   property pCodigoDiscT: Integer read CodigoDiscT write CodigoDiscT;
 
   //Getters e Setters
   function getCodigoTurma: Integer;
   procedure setCodigoTurma (aCodigoTurma:Integer);
 
-  function getCodigoProf: Integer;
-  procedure setCodigoProf(aCodigoProf:Integer);
+  function getCodigoProfT: Integer;
+  procedure setCodigoProfT (aCodigoProfT:Integer);
 
   function getCodigoDiscT: Integer;
   procedure setCodigoDiscT(aCodigoDiscT:Integer);
@@ -38,9 +38,9 @@ begin
 end;
 
 //Getter do Codigo do Professor
-function TTurmas.getCodigoProf: Integer;
+function TTurmas.getCodigoProfT: Integer;
 begin
-  Result := Self.CodigoProf;
+  Result := Self.CodigoProfT;
 end;
 
 //Getter do Codigo da Turma
@@ -59,9 +59,9 @@ begin
 end;
 
 //Setter do Codigo do Professor
-procedure TTurmas.setCodigoProf(aCodigoProf: Integer);
+procedure TTurmas.setCodigoProfT(aCodigoProfT: Integer);
 begin
-  Self.CodigoProf := aCodigoProf;
+  Self.CodigoProfT := aCodigoProfT;
 end;
 
 //Setter do Codigo da Turma

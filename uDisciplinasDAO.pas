@@ -25,8 +25,7 @@ begin
   Query := TFDQuery.Create(nil);
   try
     Query.Connection := aConnection;
-    Query.SQL.Text := 'INSERT INTO disciplinas (disc_codigo, disc_nome, disc_prof_codigo) VALUES (:CodigoDisc, :NomeDisc, :CodigoProfDisc)';
-    Query.ParamByName('CodigoDisc').AsInteger := aDisciplinas.pCodigoDisc;
+    Query.SQL.Text := 'INSERT INTO disciplinas (disc_codigo, disc_nome, disc_prof_codigo) VALUES (nextval(''Seq_disc_codigo''), :NomeDisc, :CodigoProfDisc)';
     Query.ParamByName('NomeDisc').AsString := aDisciplinas.pNomeDisc;
     Query.ParamByName('CodigoProfDisc').AsInteger := aDisciplinas.pCodigoProfDisc;
 
