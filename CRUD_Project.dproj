@@ -151,6 +151,10 @@
         <DCCReference Include="uTurmasDAO.pas"/>
         <DCCReference Include="uDisciplinasDAO.pas"/>
         <DCCReference Include="uMatriculasDAO.pas"/>
+        <DCCReference Include="uMainForm.pas">
+            <Form>Form1</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -19,7 +19,8 @@ uses
   uCadastroForm in 'uCadastroForm.pas' {f_Cadastro},
   uTurmasDAO in 'uTurmasDAO.pas',
   uDisciplinasDAO in 'uDisciplinasDAO.pas',
-  uMatriculasDAO in 'uMatriculasDAO.pas';
+  uMatriculasDAO in 'uMatriculasDAO.pas',
+  uMainForm in 'uMainForm.pas' {Form1};
 
 {$R *.res}
 
@@ -29,5 +30,6 @@ begin
   Application.CreateForm(Tf_Login, f_Login);
   Application.CreateForm(TDM, DM);
   Application.CreateForm(Tf_Cadastro, f_Cadastro);
+  Application.CreateForm(TForm1, Form1);
   Application.Run;
 end.
