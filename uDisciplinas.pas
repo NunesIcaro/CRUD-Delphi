@@ -7,11 +7,13 @@ type TDisciplinas = class
   //Atributos
   CodigoDisc : Integer;
   NomeDisc: String;
+  CodigoProfDisc: Integer;
 
   public
   //Properties
   property pCodigoDisc: Integer read CodigoDisc write CodigoDisc;
   property pNomeDisc: String read NomeDisc write NomeDisc;
+  property pCodigoProfDisc: Integer read CodigoProfDisc write CodigoProfDisc;
 
   //Getters e Setters
   function getCodigoDisc: Integer;
@@ -19,6 +21,10 @@ type TDisciplinas = class
 
   function getNomeDisc: String;
   procedure setNomeDisc (aNomeDisc: String);
+
+  function getCodigoProfDisc: Integer;
+  procedure setCodigoProfDisc (aCodigoProfDisc: Integer);
+
 
 
 
@@ -37,6 +43,12 @@ begin
   Result := Self.CodigoDisc;
 end;
 
+//Getter do Código do Professor da Disciplina
+function TDisciplinas.getCodigoProfDisc: Integer;
+begin
+  Result := Self.CodigoProfDisc;
+end;
+
 //Getter do Nome
 
 function TDisciplinas.getNomeDisc: String;
@@ -47,10 +59,16 @@ end;
 
 //Setters
 
-//Setter do Codigo
+//Setter do Código
 procedure TDisciplinas.setCodigoDisc(aCodigoDisc: Integer);
 begin
   Self.CodigoDisc := aCodigoDisc;
+end;
+
+//Setter do Código do Professor da Disciplina
+procedure TDisciplinas.setCodigoProfDisc(aCodigoProfDisc: Integer);
+begin
+  Self.CodigoProfDisc := aCodigoProfDisc;
 end;
 
 //Setter do Nome
