@@ -13,7 +13,7 @@ uses
 
 type
   Tf_Login = class(TForm)
-    Panel1: TPanel;
+    pnl_FundoLog: TPanel;
     img_login: TImage;
     pnl_login: TPanel;
     img_LoginText: TImage;
@@ -123,7 +123,7 @@ begin
     pnl_login.Width := 500;
     img_LoginText.Height := 170;
     btn_Entrar.Margins.Bottom := 306;
-    lbl_User.Margins.Top:= 200;
+    lbl_User.Margins.Top:= 175;
     img_logintext.Margins.Top := 100;
     lbl_btn_Cad.Top := 115;
     lbl_btn_Cad.Left := 825;
