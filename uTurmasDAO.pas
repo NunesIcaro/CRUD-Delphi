@@ -8,8 +8,9 @@ type
   TTurmasDAO = class
 
   public
-    class procedure Inserir(const aTurmas: TTurmas;
-      const aConnection: TFDConnection);
+    class procedure Adicionar(const aTurmas: TTurmas; const aConnection: TFDConnection);
+    class procedure Editar(const aTurmas: TTurmas; const aConnection: TFDConnection);
+    class procedure Excluir(const aTurmas: TTurmas; const aConnection: TFDConnection);
 
   end;
 
@@ -17,7 +18,43 @@ implementation
 
 { TTurmasDAO }
 
-class procedure TTurmasDAO.Inserir(const aTurmas: TTurmas;
+class procedure TTurmasDAO.Editar(const aTurmas: TTurmas;
+  const aConnection: TFDConnection);
+var Query: TFDQuery;
+begin
+  Query := TFDQuery.Create(nil);
+
+  try
+    Query.Connection := aConnection;
+    Query.SQL.Text := 'UPDATE turmas SET turmas_prof_codigo = :CodigoProfT, turmas_disc_codigo = :CodigoDiscT WHERE turmas_codigo = :CodigoTurma';
+    Query.ParamByName('CodigoProfT').AsInteger := aTurmas.pCodigoProfT;
+    Query.ParamByName('CodigoDiscT').AsInteger := aTurmas.pCodigoDiscT;
+    Query.ParamByName('CodigoTurma').AsInteger := aTurmas.pCodigoTurma;
+
+    Query.ExecSQL;
+  finally
+    Query.Free;
+  end;
+
+end;
+
+class procedure TTurmasDAO.Excluir(const aTurmas: TTurmas;
+  const aConnection: TFDConnection);
+var Query: TFDQuery;
+begin
+  Query := TFDQuery.Create(nil);
+  try
+    Query.Connection := aConnection;
+    Query.SQL.Text := 'DELETE FROM turmas WHERE turmas_codigo = :CodigoTurma';
+    Query.ParamByName('CodigoTurma').AsInteger := aTurmas.pCodigoTurma;
+    Query.ExecSQL;
+  finally
+    Query.Free;
+  end;
+
+end;
+
+class procedure TTurmasDAO.Adicionar(const aTurmas: TTurmas;
   const aConnection: TFDConnection);
 var
   Query: TFDQuery;
