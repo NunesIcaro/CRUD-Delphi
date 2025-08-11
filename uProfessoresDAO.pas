@@ -58,8 +58,8 @@ begin
   Query := TFDQuery.Create(nil);
   try
     Query.Connection := aConnection;
-    Query.SQL.Text := 'INSERT INTO professores (prof_codigo,prof_nome,prof_cpf) VALUES (:IDProfessores, :Nome, :CPF)';
-    Query.ParamByName('IDProfessores').AsInteger := aProfessores.IDProfessores;
+    Query.SQL.Text := 'INSERT INTO professores (prof_codigo,prof_nome,prof_cpf) VALUES (nextval(''Seq_prof_codigo''), :Nome, :CPF)';
+//    Query.ParamByName('IDProfessores').AsInteger := aProfessores.IDProfessores;
     Query.ParamByName('Nome').AsString := aProfessores.pNome;
     Query.ParamByName('CPF').AsString := aProfessores.pCPF;
     Query.ExecSQL;
