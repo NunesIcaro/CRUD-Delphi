@@ -28,4 +28,9 @@ object DM: TDM
     Left = 192
     Top = 96
   end
+  object DataSource1: TDataSource
+    DataSet = FDQuery1
+    Left = 168
+    Top = 208
+  end
 end

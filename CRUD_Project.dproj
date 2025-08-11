@@ -152,9 +152,10 @@
         <DCCReference Include="uDisciplinasDAO.pas"/>
         <DCCReference Include="uMatriculasDAO.pas"/>
         <DCCReference Include="uMainForm.pas">
-            <Form>Form1</Form>
+            <Form>f_Main</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="uMainDAO.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

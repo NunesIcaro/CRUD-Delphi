@@ -20,7 +20,8 @@ uses
   uTurmasDAO in 'uTurmasDAO.pas',
   uDisciplinasDAO in 'uDisciplinasDAO.pas',
   uMatriculasDAO in 'uMatriculasDAO.pas',
-  uMainForm in 'uMainForm.pas' {Form1};
+  uMainForm in 'uMainForm.pas' {f_Main},
+  uMainDAO in 'uMainDAO.pas';
 
 {$R *.res}
 
@@ -30,6 +31,6 @@ begin
   Application.CreateForm(Tf_Login, f_Login);
   Application.CreateForm(TDM, DM);
   Application.CreateForm(Tf_Cadastro, f_Cadastro);
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(Tf_Main, f_Main);
   Application.Run;
 end.

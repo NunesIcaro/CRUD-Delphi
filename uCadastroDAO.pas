@@ -26,7 +26,6 @@ begin
   try
     Query.Connection := aConnection;
     Query.SQL.Text := 'INSERT INTO users (users_codigo, users_login, users_password) VALUES (nextval(''Seq_users_codigo''), :NomeLog, :SenhaLog)';
-//    Query.ParamByName('CodigoUser').AsInteger := aCadastro.pCodigoUser;
     Query.ParamByName('NomeLog').AsString := aCadastro.pNomeLog;
     Query.ParamByName('SenhaLog').AsString := aCadastro.pSenhaLog;
 

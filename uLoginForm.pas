@@ -7,9 +7,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.PG,
-  FireDAC.Phys.PGDef, FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client, uEstudantes, uInformacoes,
-  uEstudantesDAO, uDM,uProfessores,uProfessoresDAO, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
-  uCadastroForm, uLoginDAO, uLogin, uCadastro, uCadastroDAO;
+  FireDAC.Phys.PGDef, FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client,uDM, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
+  uCadastroForm, uLoginDAO, uLogin, uCadastro, uCadastroDAO, uMainForm;
 
 type
   Tf_Login = class(TForm)
@@ -23,14 +22,12 @@ type
     ed_User: TEdit;
     btn_Entrar: TButton;
     lbl_btn_Cad: TLabel;
-//    procedure btn_Salvar1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure lbl_btn_CadClick(Sender: TObject);
     procedure btn_EntrarClick(Sender: TObject);
 
 
-//    procedure btn_Salvar2Click(Sender: TObject);
 
 
 
@@ -103,13 +100,15 @@ begin
   finally
     Login.Free;
   end;
+  f_Login.Hide;
+  f_Main.ShowModal;
 
 
 end;
 
 procedure Tf_Login.FormCreate(Sender: TObject);
 begin
-//  WindowState := wsMaximized;
+  WindowState := wsMaximized;
 end;
 
 
@@ -141,12 +140,6 @@ begin
     lbl_btn_Cad.Font.Size := 12;
   end;
 end;
-
-
-
-
-
-
 
 procedure Tf_Login.lbl_btn_CadClick(Sender: TObject);
 begin
