@@ -10,26 +10,26 @@ uses
 
 type
   Tf_Main = class(TForm)
-    Panel1: TPanel;
-    Panel2: TPanel;
-    Panel3: TPanel;
+    pnl_FundoMain: TPanel;
+    pnl_Ferramentas: TPanel;
+    pnl_Principal: TPanel;
     pnl_btn_Matri: TPanel;
     pnl_btn_Prof: TPanel;
     pnl_btn_Disc: TPanel;
     pnl_btn_Estu: TPanel;
     pnl_btn_Turmas: TPanel;
-    Image1: TImage;
-    Image2: TImage;
-    Panel9: TPanel;
+    img_CrudP: TImage;
+    img_fundo: TImage;
+    pnl_Tabela: TPanel;
     ed_Search: TEdit;
-    DBGrid1: TDBGrid;
-    CheckBox1: TCheckBox;
-    CheckBox2: TCheckBox;
-    CheckBox3: TCheckBox;
-    CheckBox4: TCheckBox;
-    CheckBox5: TCheckBox;
+    DBGrid_Geral: TDBGrid;
+    CBX_Turmas: TCheckBox;
+    CBX_Matriculas: TCheckBox;
+    CBX_Estudantes: TCheckBox;
+    CBX_Professores: TCheckBox;
+    CBX_Disciplinas: TCheckBox;
     procedure FormCreate(Sender: TObject);
-    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+    procedure DBGrid_GeralDrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
   private
     { Private declarations }
@@ -45,7 +45,7 @@ implementation
 {$R *.dfm}
 uses uMainDAO;
 
-procedure Tf_Main.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+procedure Tf_Main.DBGrid_GeralDrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: Integer; Column: TColumn; State: TGridDrawState);
 begin
     if Column.Width > 200 then  // 200 pixels de largura máxima
@@ -54,7 +54,7 @@ end;
 
 procedure Tf_Main.FormCreate(Sender: TObject);
 begin
-  TMainDAO.Pesquisar(DM.FDConnection1, DM.FDQuery1);
+  TMainDAO.PesquisarGeral(DM.FDConnection1, DM.FDQuery1,ed_Search.Text,StrToInt(ed_Search.Text));
 
 end;
 

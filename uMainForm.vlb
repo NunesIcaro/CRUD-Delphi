@@ -1,19 +1,4 @@
-﻿[Panel1]
-Coordinates=75,78,55,58
-
-[Image1]
-Coordinates=140,78,57,58
-
-[Panel2]
-Coordinates=205,10,55,58
-
-[Image2]
-Coordinates=335,10,57,58
-
-[Panel3]
-Coordinates=10,10,55,58
-
-[]
+﻿[]
 Coordinates=260,146,93,36
 Visible=True
 
@@ -31,4 +16,19 @@ Coordinates=10,78,55,58
 
 [pnl_btn_Matri]
 Coordinates=75,10,55,58
+
+[pnl_Ferramentas]
+Coordinates=205,10,55,58
+
+[pnl_FundoMain]
+Coordinates=75,78,55,58
+
+[pnl_Principal]
+Coordinates=10,10,55,58
+
+[img_CrudP]
+Coordinates=140,78,57,58
+
+[img_fundo]
+Coordinates=335,10,57,58
 
