@@ -25,10 +25,10 @@ begin
 
   try
     Query.Connection := aConnection;
-    Query.SQL.Text := 'UPDATE estudantes SET estu_nome = :Nome, estu_cpf = :CPF, estu_turmas_codigo = :Turma WHERE estu_codigo = :Codigo';
+    Query.SQL.Text := 'UPDATE estudantes SET estu_nome = :Nome, estu_cpf = :CPF, estu_turmas_codigo = :TurmaID WHERE estu_codigo = :Codigo';
     Query.ParamByName('Nome').AsString := aEstudantes.pNome;
     Query.ParamByName('CPF').AsString := aEstudantes.pCPF;
-    Query.ParamByName('Turma').AsString := aEstudantes.Turma;
+    Query.ParamByName('TurmaID').AsInteger := aEstudantes.TurmaID;
     Query.ParamByName('Codigo').AsInteger := aEstudantes.IDEstudantes;
 
     Query.ExecSQL;
@@ -63,10 +63,10 @@ begin
   Query := TFDQuery.Create(nil);
   try
     Query.Connection := aConnection;
-    Query.SQL.Text := 'INSERT INTO estudantes (estu_codigo, estu_nome, estu_cpf, estu_turmas_codigo) VALUES (nextval(''Seq_estu_codigo''), :Nome, :CPF, :Turma)';
+    Query.SQL.Text := 'INSERT INTO estudantes (estu_codigo, estu_nome, estu_cpf, estu_turmas_codigo) VALUES (nextval(''Seq_estu_codigo''), :Nome, :CPF, :TurmaID)';
     Query.ParamByName('Nome').AsString := aEstudantes.pNome;
     Query.ParamByName('CPF').AsString := aEstudantes.pCPF;
-    Query.ParamByName('Turma').AsString := aEstudantes.Turma;
+    Query.ParamByName('TurmaID').AsInteger:= aEstudantes.TurmaID;
 
     Query.ExecSQL;
   finally

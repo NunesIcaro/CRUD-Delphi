@@ -16,6 +16,7 @@ type
     FDConnection1: TFDConnection;
     FDQuery1: TFDQuery;
     DataSource1: TDataSource;
+    FDQuery2: TFDQuery;
   private
     { Private declarations }
   public

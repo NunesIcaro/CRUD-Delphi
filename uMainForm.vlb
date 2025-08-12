@@ -1,5 +1,5 @@
 ﻿[]
-Coordinates=549,232,91,36
+Coordinates=16,174,95,36
 Visible=True
 
 [pnl_btn_Prof]
@@ -56,9 +56,6 @@ Coordinates=234,155,76,58
 
 [CBX_Disciplinas]
 Coordinates=115,174,114,58
-
-[DBGrid_Geral]
-Coordinates=16,174,95,36
 
 [CBX_Matriculas]
 Coordinates=397,164,114,58

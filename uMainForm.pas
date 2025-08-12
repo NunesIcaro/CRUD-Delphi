@@ -22,18 +22,28 @@ type
     img_fundo: TImage;
     pnl_Tabela: TPanel;
     ed_Search: TEdit;
-    DBGrid_Geral: TDBGrid;
     CBX_Turmas: TCheckBox;
     CBX_Matriculas: TCheckBox;
     CBX_Estudantes: TCheckBox;
     CBX_Professores: TCheckBox;
     CBX_Disciplinas: TCheckBox;
+    StringGrid1: TStringGrid;
     pnl_Adicionar: TPanel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Panel1: TPanel;
     Label1: TLabel;
     SpeedButton1: TSpeedButton;
+    ed_Nome: TEdit;
+    Button1: TButton;
+    ed_CPF: TEdit;
+    ed_Turma: TEdit;
     procedure FormCreate(Sender: TObject);
-    procedure DBGrid_GeralDrawColumnCell(Sender: TObject; const Rect: TRect;
-      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure pnl_btn_EstuClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure ed_SearchChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -47,27 +57,86 @@ implementation
 
 {$R *.dfm}
 uses uMainDAO;
-
-procedure Tf_Main.DBGrid_GeralDrawColumnCell(Sender: TObject; const Rect: TRect;
-  DataCol: Integer; Column: TColumn; State: TGridDrawState);
+//procedure AtualizarGrid(ed_Search: TEdit);
+//var SearchI: Integer;
+//    SearchS: String;
+//begin
+//  SearchI := StrToInt(ed_Search.Text);
+//  SearchS := ed_Search.Text;
+//
+//  TMainDAO.PesquisarGeral(DM.FDConnection1, DM.FDQuery1,SearchS,SearchI)
+//end;
+procedure AtualizarStringGrid(aQuery: TDataSet; aStringGrid: TStringGrid);
+var I: Integer;
 begin
-    if Column.Width > 200 then  // 200 pixels de largura máxima
-    Column.Width := 200;
+  aStringGrid.ColCount := aQuery.FieldCount;
+  aStringGrid.RowCount := aQuery.RecordCount + 1;
+
+  for I := 0 to aQuery.FieldCount - 1 do begin
+    aStringGrid.Cells[I, 0] := aQuery.Fields[I].FieldName;
+    aStringGrid.ColWidths[I] := 200;
+  end;
+
+  aQuery.First;
+  while not aQuery.Eof do begin
+    for I := 0 to aQuery.FieldCount - 1 do begin
+      aStringGrid.Cells[I,aQuery.RecNo] := aQuery.Fields[I].AsString;
+
+
+    end;
+    aQuery.Next;
+  end;
+
+
+end;
+procedure Tf_Main.Button1Click(Sender: TObject);
+var Estudante: TEstudantes;
+begin
+
+   Estudante := TEstudantes.Create;
+   Try
+     Estudante.TurmaID := StrToInt(ed_Turma.Text);
+     Estudante.pNome := ed_Nome.Text;
+     Estudante.pCPF := ed_CPF.Text;
+
+     TEstudantesDao.Adicionar(Estudante,DM.FDConnection1);
+   Finally
+      Estudante.Free;
+      DM.FDQuery2.Close;
+      DM.FDQuery2.Open;
+      AtualizarStringGrid(DM.FDQuery2,StringGrid1);
+      pnl_Adicionar.Hide
+   end;
+end;
+
+
+
+
+procedure Tf_Main.ed_SearchChange(Sender: TObject);
+var SearchIS: String;
+
+begin
+  SearchIS := ed_Search.Text;
+
+  TMainDAO.PesquisarGeral(DM.FDConnection1, DM.FDQuery1,SearchIS)
 end;
 
 procedure Tf_Main.FormCreate(Sender: TObject);
-var SearchI: Integer;
-    SearchS: String;
 begin
-  ed_Search.Text := '0';
-  SearchI := StrToInt(ed_Search.Text);
-  ed_Search.Text := '';
-  SearchS := ed_Search.Text;
+
+   AtualizarStringGrid(DM.FDQuery2,StringGrid1);
 
 
-  TMainDAO.PesquisarGeral(DM.FDConnection1, DM.FDQuery1,SearchS,SearchI);
+end;
 
+procedure Tf_Main.pnl_btn_EstuClick(Sender: TObject);
+begin
+  pnl_Adicionar.Show;
+end;
 
+procedure Tf_Main.SpeedButton1Click(Sender: TObject);
+begin
+  pnl_Adicionar.Hide;
 end;
 
 end.

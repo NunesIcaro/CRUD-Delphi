@@ -6,7 +6,7 @@ uses uInformacoes, uTurmas;
 
 type TEstudantes = class (TInformacoes)
     IDEstudantes: integer;
-    Turma: String;
+    TurmaID: Integer;
 
     //Getters e Setters
 
@@ -19,8 +19,8 @@ type TEstudantes = class (TInformacoes)
     function getCPF: String;
     procedure setCPF(aCPF:String);
 
-    function getTurma: String;
-    procedure setTurma(aTurma:String);
+    function getTurmaID: Integer;
+    procedure setTurmaID(aTurmaID:Integer);
 
 
 end;
@@ -51,9 +51,9 @@ begin
 end;
 
 //Getter da Turma
-function TEstudantes.getTurma: String;
+function TEstudantes.getTurmaID: Integer;
 begin
-  Result := Self.Turma;
+  Result := Self.TurmaID;
 end;
 
 
@@ -78,9 +78,9 @@ begin
 end;
 
 //Setter da Turma
-procedure TEstudantes.setTurma(aTurma: String);
+procedure TEstudantes.setTurmaID(aTurmaID: Integer);
 begin
-  Self.Turma := aTurma;
+  Self.TurmaID := aTurmaID;
 end;
 
 end.

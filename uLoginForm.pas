@@ -48,22 +48,7 @@ implementation
 {$R *.dfm}
 
 
-//procedure TForm1.btn_Salvar1Click(Sender: TObject);
-//var Estudante: TEstudantes;
-//begin
-//
-//   Estudante := TEstudantes.Create;
-//   Try
-//     Estudante.IDEstudantes := StrToInt(edID_E.Text);
-//     Estudante.Turma := edTurma_E.Text;
-//     Estudante.pNome := edNome_E.Text;
-//     Estudante.pCPF := edCPF_E.Text;
-//
-//     TEstudantesDao.Inserir(Estudante,DM.FDConnection1);
-//   Finally
-//      Estudante.Free;
-//   end;
-//end;
+
 
 //procedure TForm1.btn_Salvar2Click(Sender: TObject);
 //var Professor: TProfessores;
