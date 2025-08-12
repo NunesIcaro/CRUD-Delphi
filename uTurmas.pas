@@ -5,6 +5,7 @@ type TTurmas = class
   protected
   //Atributos
   CodigoTurma : Integer;
+  NomeTurma: String;
   CodigoProfT : Integer;
   CodigoDiscT : Integer;
 
@@ -13,6 +14,7 @@ type TTurmas = class
   property pCodigoTurma: Integer read CodigoTurma write CodigoTurma;
   property pCodigoProfT: Integer read CodigoProfT write CodigoProfT;
   property pCodigoDiscT: Integer read CodigoDiscT write CodigoDiscT;
+  property pNomeTurma: String read NomeTurma write NomeTurma;
 
   //Getters e Setters
   function getCodigoTurma: Integer;
@@ -23,6 +25,9 @@ type TTurmas = class
 
   function getCodigoDiscT: Integer;
   procedure setCodigoDiscT(aCodigoDiscT:Integer);
+
+  function getNomeTurma: String;
+  procedure setNomeTurma (aNomeTurma: String);
 
 end;
 implementation
@@ -49,6 +54,11 @@ begin
   Result := Self.CodigoTurma;
 end;
 
+//Getter do Nome da Turma
+function TTurmas.getNomeTurma: String;
+begin
+  Result := Self.NomeTurma;
+end;
 
 //Setters
 
@@ -68,6 +78,12 @@ end;
 procedure TTurmas.setCodigoTurma(aCodigoTurma: Integer);
 begin
   Self.CodigoTurma := aCodigoTurma;
+end;
+
+//Setter do Nome da Turma
+procedure TTurmas.setNomeTurma(aNomeTurma: String);
+begin
+  Self.NomeTurma := aNomeTurma;
 end;
 
 end.

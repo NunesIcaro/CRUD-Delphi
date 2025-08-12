@@ -25,7 +25,7 @@ begin
   Query := TFDQuery.Create(nil);
   try
     Query.Connection := aConnection;
-    Query.SQL.Text := 'INSERT INTO users (users_codigo, users_login, users_password) VALUES (nextval(''Seq_users_codigo''), :NomeLog, :SenhaLog)';
+    Query.SQL.Text := 'INSERT INTO users(users_codigo, users_login, users_password) VALUES (nextval(''Seq_users_codigo''), :NomeLog, :SenhaLog)';
     Query.ParamByName('NomeLog').AsString := aCadastro.pNomeLog;
     Query.ParamByName('SenhaLog').AsString := aCadastro.pSenhaLog;
 

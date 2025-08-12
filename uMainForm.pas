@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uProfessores,uProfessoresDAO,uEstudantes, uInformacoes,
   uEstudantesDAO, Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.ComCtrls, CommCtrl,
-  Vcl.StdCtrls, Vcl.DBCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids;
+  Vcl.StdCtrls, Vcl.DBCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, uDM;
 
 type
   Tf_Main = class(TForm)
@@ -21,14 +21,16 @@ type
     Image1: TImage;
     Image2: TImage;
     Panel9: TPanel;
-    Edit1: TEdit;
-    DBCheckBox1: TDBCheckBox;
-    DBCheckBox2: TDBCheckBox;
-    DBCheckBox3: TDBCheckBox;
-    DBCheckBox4: TDBCheckBox;
-    DBCheckBox5: TDBCheckBox;
+    ed_Search: TEdit;
     DBGrid1: TDBGrid;
-    procedure Image1Click(Sender: TObject);
+    CheckBox1: TCheckBox;
+    CheckBox2: TCheckBox;
+    CheckBox3: TCheckBox;
+    CheckBox4: TCheckBox;
+    CheckBox5: TCheckBox;
+    procedure FormCreate(Sender: TObject);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -41,12 +43,19 @@ var
 implementation
 
 {$R *.dfm}
+uses uMainDAO;
 
-
-
-procedure Tf_Main.Image1Click(Sender: TObject);
+procedure Tf_Main.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+  DataCol: Integer; Column: TColumn; State: TGridDrawState);
 begin
-    //sdadsadad
+    if Column.Width > 200 then  // 200 pixels de largura máxima
+    Column.Width := 200;
+end;
+
+procedure Tf_Main.FormCreate(Sender: TObject);
+begin
+  TMainDAO.Pesquisar(DM.FDConnection1, DM.FDQuery1);
+
 end;
 
 end.

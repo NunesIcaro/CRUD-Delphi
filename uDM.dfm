@@ -1,36 +1,39 @@
 object DM: TDM
-  Height = 480
-  Width = 640
+  Height = 600
+  Width = 800
+  PixelsPerInch = 120
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
     VendorLib = 
-      'C:\Users\'#205'caro Nunes\Desktop\CRUD-Delphi\Win32\Debug\lib\libpq.d' +
-      'll'
-    Left = 88
-    Top = 96
+      'C:\Users\icaro\Desktop\CRUD-DELPHI\CRUD-Delphi\Win32\Debug\lib\l' +
+      'ibpq.dll'
+    Left = 110
+    Top = 120
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
-      'Database=CRUD_db'
+      'Database=postgres'
       'User_Name=postgres'
       'Password=root'
       'Server=localhost'
       'DriverID=PG')
     Connected = True
     LoginPrompt = False
-    Left = 88
-    Top = 208
+    Left = 110
+    Top = 260
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
     SQL.Strings = (
-      'select * from estudantes'
+      ''
       '')
-    Left = 192
-    Top = 96
+    Left = 240
+    Top = 120
   end
   object DataSource1: TDataSource
     DataSet = FDQuery1
-    Left = 168
-    Top = 208
+    Left = 210
+    Top = 260
   end
 end

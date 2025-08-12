@@ -26,10 +26,12 @@ begin
 
   try
     Query.Connection := aConnection;
-    Query.SQL.Text := 'UPDATE turmas SET turmas_prof_codigo = :CodigoProfT, turmas_disc_codigo = :CodigoDiscT WHERE turmas_codigo = :CodigoTurma';
+    Query.SQL.Text := 'UPDATE turmas SET turmas_prof_codigo = :CodigoProfT, turmas_disc_codigo = :CodigoDiscT, Turmas_nome = :NomeTurma WHERE turmas_codigo = :CodigoTurma';
     Query.ParamByName('CodigoProfT').AsInteger := aTurmas.pCodigoProfT;
     Query.ParamByName('CodigoDiscT').AsInteger := aTurmas.pCodigoDiscT;
+    Query.ParamByName('NomeTurma').AsString := aTurmas.pNomeTurma;
     Query.ParamByName('CodigoTurma').AsInteger := aTurmas.pCodigoTurma;
+
 
     Query.ExecSQL;
   finally
@@ -62,9 +64,10 @@ begin
   Query := TFDQuery.Create(nil);
   try
     Query.Connection := aConnection;
-    Query.SQL.Text := 'INSERT INTO turmas (turmas_codigo, turmas_prof_codigo,turmas_disc_codigo) VALUES (nextval(''Seq_turmas_codigo''), :CodigoProfT, :CodigoDiscT)';
+    Query.SQL.Text := 'INSERT INTO turmas (turmas_codigo, turmas_prof_codigo,turmas_disc_codigo,turmas_nome) VALUES (nextval(''Seq_turmas_codigo''), :CodigoProfT, :CodigoDiscT, :NomeTurma)';
     Query.ParamByName('CodigoProfT').AsInteger := aTurmas.pCodigoProfT;
     Query.ParamByName('CodigoDiscT').AsInteger := aTurmas.pCodigoDiscT;
+    Query.ParamByName('NomeTurma').AsString := aTurmas.pNomeTurma;
 
     Query.ExecSQL;
   finally
