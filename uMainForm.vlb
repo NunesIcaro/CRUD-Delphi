@@ -1,34 +1,65 @@
 ﻿[]
-Coordinates=260,146,93,36
+Coordinates=549,232,91,36
 Visible=True
 
 [pnl_btn_Prof]
-Coordinates=140,10,55,58
+Coordinates=140,10,88,58
 
 [pnl_btn_Disc]
-Coordinates=270,10,55,58
+Coordinates=270,10,89,58
 
 [pnl_btn_Estu]
-Coordinates=207,78,55,58
+Coordinates=207,78,90,58
 
 [pnl_btn_Turmas]
-Coordinates=10,78,55,58
+Coordinates=10,78,107,58
 
 [pnl_btn_Matri]
-Coordinates=75,10,55,58
+Coordinates=75,10,93,58
 
 [pnl_Ferramentas]
-Coordinates=205,10,55,58
+Coordinates=205,10,112,58
 
 [pnl_FundoMain]
-Coordinates=75,78,55,58
+Coordinates=75,78,103,58
+Visible=True
 
 [pnl_Principal]
-Coordinates=10,10,55,58
+Coordinates=10,10,89,58
 
 [img_CrudP]
-Coordinates=140,78,57,58
+Coordinates=140,78,79,58
 
 [img_fundo]
-Coordinates=335,10,57,58
+Coordinates=335,10,74,58
+
+[CBX_Estudantes]
+Coordinates=549,78,114,58
+
+[DM.FDQuery1]
+Coordinates=397,87,97,58
+
+[CBX_Turmas]
+Coordinates=355,1,114,58
+
+[pnl_Tabela]
+Coordinates=118,1,78,58
+
+[DM.DataSource1]
+Coordinates=549,155,113,36
+
+[CBX_Professores]
+Coordinates=549,1,116,58
+
+[ed_Search]
+Coordinates=234,155,76,58
+
+[CBX_Disciplinas]
+Coordinates=115,174,114,58
+
+[DBGrid_Geral]
+Coordinates=16,174,95,36
+
+[CBX_Matriculas]
+Coordinates=397,164,114,58
 
