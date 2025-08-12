@@ -53,8 +53,17 @@ begin
 end;
 
 procedure Tf_Main.FormCreate(Sender: TObject);
+var SearchI: Integer;
+    SearchS: String;
 begin
-  TMainDAO.PesquisarGeral(DM.FDConnection1, DM.FDQuery1,ed_Search.Text,StrToInt(ed_Search.Text));
+  ed_Search.Text := '0';
+  SearchI := StrToInt(ed_Search.Text);
+  ed_Search.Text := '';
+  SearchS := ed_Search.Text;
+
+
+  TMainDAO.PesquisarGeral(DM.FDConnection1, DM.FDQuery1,SearchS,SearchI);
+
 
 end;
 

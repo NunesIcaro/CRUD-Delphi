@@ -24,8 +24,8 @@ begin
       aQuery.SQL.Text := 'SELECT * FROM vw_geral;'
     end else if (aSearchI <> 0) then begin
       aQuery.SQL.Text := 'SELECT * FROM vw_geral WHERE UPPER(estu_codigo) LIKE UPPER(:aSearchI)' +
-      'or UPPER(turmas_codigo) LIKE UPPER(:aSearchI) or UPPER(disc_codigo) LIkE UPPER(:aSearchI) or UPPER(prof_codigo) LIKE UPPER(:aSearchI) or UPPER(matri_codigo) LIKE UPPER(:aSearchI)';
-      aQuery.ParambyName('aSearchI').AsString := '%' + IntToStr(aSearchI) + '%';
+      'or UPPER(turmas_codigo) LIKE UPPER(:aSearchI) or UPPER(disc_codigo) LIKE UPPER(:aSearchI) or UPPER(prof_codigo) LIKE UPPER(:aSearchI) or UPPER(matri_codigo) LIKE UPPER(:aSearchI)';
+      aQuery.ParambyName('aSearchI').AsInteger:= aSearchI;
     end else begin
       aQuery.SQL.Text := 'SELECT * FROM vw_geral WHERE UPPER(estu_nome) LIKE UPPER(:aSearchS)' +
       'or UPPER(turmas_nome) LIKE UPPER(:aSearchS) or UPPER(disc_nome) LIKE UPPER(:aSearchS) or UPPER(prof_nome) LIKE UPPER(:aSearchS) or UPPER(prof_cpf) LIKE UPPER(:aSearchS)';
