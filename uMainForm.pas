@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uProfessores,uProfessoresDAO,uEstudantes, uInformacoes,
   uEstudantesDAO, Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.ComCtrls, CommCtrl,
-  Vcl.StdCtrls, Vcl.DBCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, uDM, Vcl.Buttons;
+  Vcl.StdCtrls, Vcl.DBCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, uDM, Vcl.Buttons, uDisciplinas,
+  uDisciplinasDAO, uMatriculas, uMatriculasDAO, uTurmas, uTurmasDAO;
 
 type
   Tf_Main = class(TForm)
@@ -170,8 +171,25 @@ end;
 
 
 procedure Tf_Main.btn_ConcluirDClick(Sender: TObject);
+var Disciplina: TDisciplinas;
 begin
-//jjjbjbjh
+
+   Disciplina := TDisciplinas.Create;
+   Try
+     Disciplina.pNomeDisc := ed_NomeD.Text;
+     Disciplina.pCodigoProfDisc := StrToInt(ed_IDProfD.Text);
+
+
+     TDisciplinasDAO.Adicionar(Disciplina,DM.FDConnection1);
+   Finally
+      Disciplina.Free;
+      DM.FDQuery2.Close;
+      DM.FDQuery2.Open;
+      AtualizarStringGrid(DM.FDQuery2,StringGridG);
+      pnl_AdicionarD.Hide;
+      ed_NomeD.Clear;
+      ed_IDProfD.Clear;
+   end;
 end;
 
 procedure Tf_Main.btn_ConcluirEClick(Sender: TObject);
@@ -190,17 +208,35 @@ begin
       DM.FDQuery2.Close;
       DM.FDQuery2.Open;
       AtualizarStringGrid(DM.FDQuery2,StringGridG);
-      pnl_AdicionarE.Hide
+      pnl_AdicionarE.Hide;
+      ed_TurmaE.Clear;
+      ed_NomeE.Clear;
+      ed_CpfE.Clear;
    end;
-   pnl_btn_Estu.Color := RGB(240, 248, 255);
 end;
 
 
 
 
 procedure Tf_Main.btn_ConcluirMClick(Sender: TObject);
+var Matricula: TMatriculas;
 begin
-//adadada
+
+   Matricula := TMatriculas.Create;
+   Try
+     Matricula.pCodigoTurmaM := StrToInt(ed_IDTurmaM.Text);
+     Matricula.pCodigoEstuM := StrToInt(ed_IDEstuM.Text);
+
+     TMatriculasDAO.Adicionar(Matricula, DM.FDConnection1)
+   Finally
+      Matricula.Free;
+      DM.FDQuery2.Close;
+      DM.FDQuery2.Open;
+      AtualizarStringGrid(DM.FDQuery2,StringGridG);
+      pnl_AdicionarM.Hide;
+      ed_IDTurmaM.Clear;
+      ed_IDEstuM.Clear;
+   end;
 end;
 
 procedure Tf_Main.btn_ConcluirPClick(Sender: TObject);
@@ -218,15 +254,35 @@ begin
       DM.FDQuery2.Open;
       AtualizarStringGrid(DM.FDQuery2,StringGridG);
       pnl_AdicionarP.Hide;
+      ed_NomeP.Clear;
+      ed_CpfP.Clear;
    end;
-   pnl_btn_Prof.Color := RGB(240, 248, 255);
+
 end;
 
 
 
 procedure Tf_Main.btn_ConcluirTClick(Sender: TObject);
+var Turma: TTurmas;
 begin
-//asdad
+   Turma:= TTurmas.Create;
+   Try
+     Turma.pNomeTurma := ed_NomeT.Text;
+     Turma.pCodigoProfT := StrToInt(ed_IDProfT.Text);
+     Turma.pCodigoDiscT := StrToInt(ed_IDDiscT.Text);
+
+     TTurmasDAO.Adicionar(Turma,DM.FDConnection1);
+   Finally
+      Turma.Free;
+      DM.FDQuery2.Close;
+      DM.FDQuery2.Open;
+      AtualizarStringGrid(DM.FDQuery2,StringGridG);
+      pnl_AdicionarT.Hide;
+      ed_NomeT.Clear;
+      ed_IDProfT.Clear;
+      ed_IDDiscT.Clear;
+   end;
+
 end;
 
 procedure Tf_Main.btn_DeletarEClick(Sender: TObject);
