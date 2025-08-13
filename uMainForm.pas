@@ -24,22 +24,35 @@ type
     ed_Search: TEdit;
     StringGrid1: TStringGrid;
     pnl_Adicionar: TPanel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
+    lbl_NomeE: TLabel;
+    lbl_CpfE: TLabel;
+    lbl_TurmaE: TLabel;
     Panel1: TPanel;
     lbl_PnlAdicionar: TLabel;
     SpeedButton1: TSpeedButton;
-    ed_Nome: TEdit;
-    Button1: TButton;
-    ed_CPF: TEdit;
-    ed_Turma: TEdit;
+    ed_NomeE: TEdit;
+    btn_ConcluirE: TButton;
+    ed_CpfE: TEdit;
+    ed_TurmaE: TEdit;
+    Panel2: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure pnl_btn_EstuClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure btn_ConcluirEClick(Sender: TObject);
     procedure ed_SearchChange(Sender: TObject);
     procedure pnl_btn_EstuMouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
+    procedure pnl_btn_ProfClick(Sender: TObject);
+    procedure pnl_btn_ProfMouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
+    procedure pnl_btn_DiscClick(Sender: TObject);
+    procedure pnl_btn_DiscMouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
+    procedure pnl_btn_MatriClick(Sender: TObject);
+    procedure pnl_btn_MatriMouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
+    procedure pnl_btn_TurmasClick(Sender: TObject);
+    procedure pnl_btn_TurmasMouseMove(Sender: TObject; Shift: TShiftState; X,
       Y: Integer);
   private
     { Private declarations }
@@ -54,15 +67,7 @@ implementation
 
 {$R *.dfm}
 uses uMainDAO;
-//procedure AtualizarGrid(ed_Search: TEdit);
-//var SearchI: Integer;
-//    SearchS: String;
-//begin
-//  SearchI := StrToInt(ed_Search.Text);
-//  SearchS := ed_Search.Text;
-//
-//  TMainDAO.PesquisarGeral(DM.FDConnection1, DM.FDQuery1,SearchS,SearchI)
-//end;
+
 procedure AtualizarStringGrid(aQuery: TDataSet; aStringGrid: TStringGrid);
 var I: Integer;
 begin
@@ -86,15 +91,15 @@ begin
 
 
 end;
-procedure Tf_Main.Button1Click(Sender: TObject);
+procedure Tf_Main.btn_ConcluirEClick(Sender: TObject);
 var Estudante: TEstudantes;
 begin
 
    Estudante := TEstudantes.Create;
    Try
-     Estudante.TurmaID := StrToInt(ed_Turma.Text);
-     Estudante.pNome := ed_Nome.Text;
-     Estudante.pCPF := ed_CPF.Text;
+     Estudante.TurmaID := StrToInt(ed_TurmaE.Text);
+     Estudante.pNome := ed_NomeE.Text;
+     Estudante.pCPF := ed_CpfE.Text;
 
      TEstudantesDao.Adicionar(Estudante,DM.FDConnection1);
    Finally
@@ -129,6 +134,17 @@ begin
 
 end;
 
+procedure Tf_Main.pnl_btn_DiscClick(Sender: TObject);
+begin
+  pnl_btn_Estu.Color := RGB(173, 216, 230);
+end;
+
+procedure Tf_Main.pnl_btn_DiscMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+begin
+  pnl_btn_Estu.Color := RGB(173, 216, 230);
+end;
+
 procedure Tf_Main.pnl_btn_EstuClick(Sender: TObject);
 begin
   pnl_Adicionar.Show;
@@ -137,6 +153,39 @@ end;
 
 procedure Tf_Main.pnl_btn_EstuMouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
+begin
+  pnl_btn_Estu.Color := RGB(173, 216, 230);
+end;
+
+procedure Tf_Main.pnl_btn_MatriClick(Sender: TObject);
+begin
+  pnl_btn_Estu.Color := RGB(173, 216, 230);
+end;
+
+procedure Tf_Main.pnl_btn_MatriMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+begin
+  pnl_btn_Estu.Color := RGB(173, 216, 230);
+end;
+
+procedure Tf_Main.pnl_btn_ProfClick(Sender: TObject);
+begin
+  pnl_btn_Estu.Color := RGB(173, 216, 230);
+end;
+
+procedure Tf_Main.pnl_btn_ProfMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+begin
+   pnl_btn_Prof.Color := RGB(173, 216, 230);
+end;
+
+procedure Tf_Main.pnl_btn_TurmasClick(Sender: TObject);
+begin
+  pnl_btn_Estu.Color := RGB(173, 216, 230);
+end;
+
+procedure Tf_Main.pnl_btn_TurmasMouseMove(Sender: TObject; Shift: TShiftState;
+  X, Y: Integer);
 begin
   pnl_btn_Estu.Color := RGB(173, 216, 230);
 end;
