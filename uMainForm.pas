@@ -27,6 +27,33 @@ type
     btn_Editar: TButton;
     btn_Deletar: TButton;
     btn_Adicionar: TButton;
+    pnl_AdicionarP: TPanel;
+    lbl_NomeP: TLabel;
+    lbl_CpfP: TLabel;
+    pnl_CbcP: TPanel;
+    lbl_PnlAdicionarP: TLabel;
+    SP_btn_Sair2: TSpeedButton;
+    ed_NomeP: TEdit;
+    btn_ConcluirP: TButton;
+    ed_CpfP: TEdit;
+    pnl_AdicionarD: TPanel;
+    lbl_NomeD: TLabel;
+    lbl_IDProfD: TLabel;
+    pnl_CbcD: TPanel;
+    lbl_PnlAdicionarD: TLabel;
+    SP_Btn_Sair3: TSpeedButton;
+    ed_NomeD: TEdit;
+    btn_ConcluirD: TButton;
+    ed_IDProfD: TEdit;
+    pnl_AdicionarM: TPanel;
+    lbl_IDEstuM: TLabel;
+    lbl_IDTurmaM: TLabel;
+    pnl_CbcM: TPanel;
+    lbl_pnlAdicionarM: TLabel;
+    SP_Btn_Sair4: TSpeedButton;
+    ed_IDEstuM: TEdit;
+    btn_ConcluirM: TButton;
+    ed_IDTurmaM: TEdit;
     pnl_AdicionarE: TPanel;
     lbl_NomeE: TLabel;
     lbl_CpfE: TLabel;
@@ -38,15 +65,17 @@ type
     btn_ConcluirE: TButton;
     ed_CpfE: TEdit;
     ed_TurmaE: TEdit;
-    pnl_AdicionarP: TPanel;
-    lbl_NomeP: TLabel;
-    lbl_CpfP: TLabel;
-    pnl_CbcP: TPanel;
-    lbl_PnlAdicionarP: TLabel;
-    SP_btn_Sair2: TSpeedButton;
-    ed_NomeP: TEdit;
-    btn_ConcluirP: TButton;
-    ed_CpfP: TEdit;
+    pnl_AdicionarT: TPanel;
+    lbl_NomeT: TLabel;
+    lbl_IDProfT: TLabel;
+    lbl_IDDiscT: TLabel;
+    pnl_CbcT: TPanel;
+    lbl_PnlAdicionarT: TLabel;
+    SP_Btn_Sair5: TSpeedButton;
+    ed_NomeT: TEdit;
+    btn_ConcluirT: TButton;
+    ed_IDProfT: TEdit;
+    ed_IDDiscT: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure SP_btn_SairClick(Sender: TObject);
     procedure btn_ConcluirEClick(Sender: TObject);
@@ -58,7 +87,6 @@ type
     procedure btn_ConcluirPClick(Sender: TObject);
     procedure pnl_btn_ProfClick(Sender: TObject);
     procedure img_CrudPClick(Sender: TObject);
-    procedure btn_AdicionarEClick(Sender: TObject);
     procedure btn_EditarEClick(Sender: TObject);
     procedure btn_DeletarEClick(Sender: TObject);
     procedure pnl_btn_DiscClick(Sender: TObject);
@@ -74,6 +102,14 @@ type
     procedure pnl_btn_TurmasMouseLeave(Sender: TObject);
     procedure pnl_btn_LogoutMouseEnter(Sender: TObject);
     procedure pnl_btn_LogoutMouseLeave(Sender: TObject);
+    procedure btn_AdicionarClick(Sender: TObject);
+    procedure SP_btn_Sair2Click(Sender: TObject);
+    procedure SP_Btn_Sair3Click(Sender: TObject);
+    procedure btn_ConcluirDClick(Sender: TObject);
+    procedure btn_ConcluirMClick(Sender: TObject);
+    procedure SP_Btn_Sair4Click(Sender: TObject);
+    procedure btn_ConcluirTClick(Sender: TObject);
+    procedure SP_Btn_Sair5Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -115,9 +151,27 @@ begin
 
 
 end;
-procedure Tf_Main.btn_AdicionarEClick(Sender: TObject);
+procedure Tf_Main.btn_AdicionarClick(Sender: TObject);
 begin
-  pnl_AdicionarE.Show;
+  if (PanelOpen = 'Estudantes') then begin
+    pnl_AdicionarE.Show;
+  end else if (PanelOpen = 'Professores') then begin
+    pnl_AdicionarP.Show;
+  end else if (PanelOpen = 'Disciplinas') then begin
+    pnl_AdicionarD.Show;
+  end else if (PanelOpen = 'Matriculas') then begin
+    pnl_AdicionarM.Show;
+  end else if (PanelOpen = 'Turmas') then begin
+    pnl_AdicionarT.Show;
+  end;
+
+end;
+
+
+
+procedure Tf_Main.btn_ConcluirDClick(Sender: TObject);
+begin
+//jjjbjbjh
 end;
 
 procedure Tf_Main.btn_ConcluirEClick(Sender: TObject);
@@ -144,6 +198,11 @@ end;
 
 
 
+procedure Tf_Main.btn_ConcluirMClick(Sender: TObject);
+begin
+//adadada
+end;
+
 procedure Tf_Main.btn_ConcluirPClick(Sender: TObject);
 var Professor: TProfessores;
 begin
@@ -164,6 +223,11 @@ begin
 end;
 
 
+
+procedure Tf_Main.btn_ConcluirTClick(Sender: TObject);
+begin
+//asdad
+end;
 
 procedure Tf_Main.btn_DeletarEClick(Sender: TObject);
 begin
@@ -274,7 +338,6 @@ end;
 
 procedure Tf_Main.pnl_btn_LogoutClick(Sender: TObject);
 begin
-
   f_Main.Hide;
   f_Login.Show;
 end;
@@ -382,9 +445,39 @@ begin
   end;
 end;
 
+procedure Tf_Main.SP_btn_Sair2Click(Sender: TObject);
+begin
+  pnl_AdicionarP.Hide;
+  pnl_btn_Prof.Color := RGB(240, 248, 255);
+end;
+
+procedure Tf_Main.SP_Btn_Sair3Click(Sender: TObject);
+begin
+  pnl_AdicionarD.Hide;
+  pnl_btn_Disc.Color := RGB(240, 248, 255);
+end;
+
+procedure Tf_Main.SP_Btn_Sair4Click(Sender: TObject);
+begin
+  pnl_AdicionarM.Hide;
+  pnl_btn_Matri.Color := RGB(240, 248, 255);
+end;
+
+procedure Tf_Main.SP_Btn_Sair5Click(Sender: TObject);
+begin
+  pnl_AdicionarT.Hide;
+  ed_NomeT.Clear;
+  ed_IDProfT.Clear;
+  ed_IDDiscT.Clear;
+  pnl_btn_Turmas.Color := RGB(240, 248, 255);
+end;
+
 procedure Tf_Main.SP_btn_SairClick(Sender: TObject);
 begin
   pnl_AdicionarE.Hide;
+  ed_NomeE.Clear;
+  ed_CpfE.Clear;
+  ed_TurmaE.Clear;
   pnl_btn_Estu.Color := RGB(240, 248, 255);
 end;
 
