@@ -64,6 +64,16 @@ type
     procedure pnl_btn_DiscClick(Sender: TObject);
     procedure pnl_btn_MatriClick(Sender: TObject);
     procedure pnl_btn_TurmasClick(Sender: TObject);
+    procedure pnl_btn_ProfMouseEnter(Sender: TObject);
+    procedure pnl_btn_DiscMouseEnter(Sender: TObject);
+    procedure pnl_btn_MatriMouseEnter(Sender: TObject);
+    procedure pnl_btn_TurmasMouseEnter(Sender: TObject);
+    procedure pnl_btn_ProfMouseLeave(Sender: TObject);
+    procedure pnl_btn_DiscMouseLeave(Sender: TObject);
+    procedure pnl_btn_MatriMouseLeave(Sender: TObject);
+    procedure pnl_btn_TurmasMouseLeave(Sender: TObject);
+    procedure pnl_btn_LogoutMouseEnter(Sender: TObject);
+    procedure pnl_btn_LogoutMouseLeave(Sender: TObject);
 
   private
     { Private declarations }
@@ -78,6 +88,7 @@ implementation
 
 {$R *.dfm}
 uses uMainDAO, uLoginForm;
+var PanelOpen: String;
 
 
 procedure AtualizarStringGrid(aQuery: TDataSet; aStringGrid: TStringGrid);
@@ -189,9 +200,12 @@ procedure Tf_Main.img_CrudPClick(Sender: TObject);
 begin
   DM.FDQuery2.SQL.Text := 'SELECT * FROM vw_geral';
   pnl_tabelaGeral.Show;
+  PanelOpen := 'Geral';
   btn_editar.Hide;
   btn_deletar.Hide;
   btn_Adicionar.Hide;
+  StringGridG.Height:= 415;
+  ed_Search.Show;
   DM.FDQuery2.Close;
   Dm.FDQuery2.Open;
   AtualizarStringGrid(DM.FDQuery2,StringGridG);
@@ -202,8 +216,12 @@ begin
   DM.FDQuery2.SQL.Text := 'SELECT disc_codigo as "ID Disciplina", '+
     'disc_nome as "Nome Disciplina", '+
     'disc_prof_codigo as "ID Professor" FROM disciplinas';
-
-
+  PanelOpen := 'Disciplinas';
+  ed_Search.Hide;
+  btn_editar.Show;
+  btn_deletar.Show;
+  btn_Adicionar.Show;
+  StringGridG.Height := 431;
   pnl_btn_Disc.Color := RGB(173, 216, 230);
   pnl_TabelaGeral.Show;
   DM.FDQuery2.Close;
@@ -212,13 +230,29 @@ begin
 
 end;
 
+procedure Tf_Main.pnl_btn_DiscMouseEnter(Sender: TObject);
+begin
+  pnl_btn_Disc.Color := RGB(173, 216, 230);
+end;
+
+procedure Tf_Main.pnl_btn_DiscMouseLeave(Sender: TObject);
+begin
+  if (PanelOpen <> 'Disciplinas') then begin
+    pnl_btn_Disc.Color := RGB(240, 248, 255);
+  end;
+end;
+
 procedure Tf_Main.pnl_btn_EstuClick(Sender: TObject);
 begin
   DM.FDQuery2.SQL.Text := 'SELECT estu_codigo as "ID Estudante", '+
     'estu_nome as "Nome Estudante", '+
     'estu_cpf as "CPF Estudante" FROM estudantes';
-
-
+  PanelOpen := 'Estudantes';
+  ed_Search.Hide;
+  btn_editar.Show;
+  btn_deletar.Show;
+  btn_Adicionar.Show;
+  StringGridG.Height := 431;
   pnl_btn_Estu.Color := RGB(173, 216, 230);
   pnl_TabelaGeral.Show;
   DM.FDQuery2.Close;
@@ -229,13 +263,11 @@ end;
 procedure Tf_Main.pnl_btn_EstuMouseEnter(Sender: TObject);
 begin
   pnl_btn_Estu.Color := RGB(173, 216, 230);
-
-
 end;
 
 procedure Tf_Main.pnl_btn_EstuMouseLeave(Sender: TObject);
 begin
-   if not pnl_TabelaGeral.Visible then begin
+  if (PanelOpen <> 'Estudantes') then begin
     pnl_btn_Estu.Color := RGB(240, 248, 255);
   end;
 end;
@@ -247,19 +279,45 @@ begin
   f_Login.Show;
 end;
 
+procedure Tf_Main.pnl_btn_LogoutMouseEnter(Sender: TObject);
+begin
+  pnl_btn_Logout.Color := RGB(173, 216, 230);
+end;
+
+procedure Tf_Main.pnl_btn_LogoutMouseLeave(Sender: TObject);
+begin
+  pnl_btn_Logout.Color := RGB(240, 248, 255);
+end;
+
 procedure Tf_Main.pnl_btn_MatriClick(Sender: TObject);
 begin
   DM.FDQuery2.SQL.Text := 'SELECT matri_codigo as "ID Matrícula", '+
     'matri_turma_codigo as "ID Turma", '+
     'matri_estu_codigo as "ID Estudante" FROM matriculas';
-;
 
-
+    PanelOpen := 'Matriculas';
+    ed_Search.Hide;
+    btn_editar.Show;
+    btn_deletar.Show;
+    btn_Adicionar.Show;
+    StringGridG.Height := 431;
     pnl_btn_Matri.Color := RGB(173, 216, 230);
     pnl_TabelaGeral.Show;
     DM.FDQuery2.Close;
     DM.FDQuery2.Open;
     AtualizarStringGrid(DM.FDQuery2,StringGridG);
+end;
+
+procedure Tf_Main.pnl_btn_MatriMouseEnter(Sender: TObject);
+begin
+  pnl_btn_Matri.Color := RGB(173, 216, 230);
+end;
+
+procedure Tf_Main.pnl_btn_MatriMouseLeave(Sender: TObject);
+begin
+  if (PanelOpen <> 'Matriculas') then begin
+    pnl_btn_Matri.Color := RGB(240, 248, 255);
+  end;
 end;
 
 procedure Tf_Main.pnl_btn_ProfClick(Sender: TObject);
@@ -268,12 +326,29 @@ begin
     'prof_nome as "Nome Professor", '+
     'prof_cpf as "CPF Professor" FROM professores';
 
-
+    PanelOpen := 'Professores';
+    ed_Search.Hide;
+    btn_editar.Show;
+    btn_deletar.Show;
+    btn_Adicionar.Show;
+    StringGridG.Height := 431;
     pnl_btn_Prof.Color := RGB(173, 216, 230);
     pnl_TabelaGeral.Show;
     DM.FDQuery2.Close;
     DM.FDQuery2.Open;
     AtualizarStringGrid(DM.FDQuery2,StringGridG);
+end;
+
+procedure Tf_Main.pnl_btn_ProfMouseEnter(Sender: TObject);
+begin
+  pnl_btn_Prof.Color := RGB(173, 216, 230);
+end;
+
+procedure Tf_Main.pnl_btn_ProfMouseLeave(Sender: TObject);
+begin
+  if (PanelOpen <> 'Professores') then begin
+    pnl_btn_Prof.Color := RGB(240, 248, 255);
+  end;
 end;
 
 procedure Tf_Main.pnl_btn_TurmasClick(Sender: TObject);
@@ -282,13 +357,29 @@ begin
     'turmas_nome as "Nome Turma", '+
     'turmas_disc_codigo as "ID Disciplina",' +
     'turmas_prof_codigo as "ID Professor" FROM turmas';
-
-
+    PanelOpen := 'Turmas';
+    ed_Search.Hide;
+    btn_editar.Show;
+    btn_deletar.Show;
+    btn_Adicionar.Show;
+    StringGridG.Height := 431;
     pnl_btn_Turmas.Color := RGB(173, 216, 230);
     pnl_TabelaGeral.Show;
     DM.FDQuery2.Close;
     DM.FDQuery2.Open;
     AtualizarStringGrid(DM.FDQuery2,StringGridG);
+end;
+
+procedure Tf_Main.pnl_btn_TurmasMouseEnter(Sender: TObject);
+begin
+  pnl_btn_Turmas.Color := RGB(173, 216, 230);
+end;
+
+procedure Tf_Main.pnl_btn_TurmasMouseLeave(Sender: TObject);
+begin
+  if (PanelOpen <> 'Turmas') then begin
+    pnl_btn_Turmas.Color := RGB(240, 248, 255);
+  end;
 end;
 
 procedure Tf_Main.SP_btn_SairClick(Sender: TObject);
