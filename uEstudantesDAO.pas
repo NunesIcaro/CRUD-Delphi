@@ -2,7 +2,7 @@ unit uEstudantesDAO;
 
 interface
 
-uses uEstudantes, FireDac.Comp.Client, System.SysUtils,FireDAC.Stan.Param;
+uses uEstudantes, FireDac.Comp.Client, System.SysUtils,FireDAC.Stan.Param,Data.DB;
 
 type TEstudantesDAO = class
 
@@ -27,9 +27,11 @@ begin
     Query.Connection := aConnection;
     Query.SQL.Text := 'UPDATE estudantes SET estu_nome = :Nome, estu_cpf = :CPF, estu_turmas_codigo = :TurmaID WHERE estu_codigo = :Codigo';
     Query.ParamByName('Nome').AsString := aEstudantes.pNome;
+    Query.ParamByName('CPF').DataType := ftString;
     Query.ParamByName('CPF').AsString := aEstudantes.pCPF;
     Query.ParamByName('TurmaID').AsInteger := aEstudantes.TurmaID;
     Query.ParamByName('Codigo').AsInteger := aEstudantes.IDEstudantes;
+
 
     Query.ExecSQL;
   finally

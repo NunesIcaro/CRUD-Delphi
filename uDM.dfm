@@ -40,8 +40,7 @@ object DM: TDM
     Active = True
     Connection = FDConnection1
     SQL.Strings = (
-      'SELECT * FROM vw_geral;'
-      '')
+      'SELECT * FROM vw_geral;')
     Left = 312
     Top = 118
   end
