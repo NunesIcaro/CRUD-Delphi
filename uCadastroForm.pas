@@ -21,6 +21,7 @@ type
     procedure FormResize(Sender: TObject);
     procedure btn_CadastrarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -56,6 +57,8 @@ end;
 procedure Tf_Cadastro.FormCreate(Sender: TObject);
 begin
   WindowState := wsMaximized;
+  ed_NomeCad.Clear;
+  ed_SenhaCad.Clear;
 end;
 
 procedure Tf_Cadastro.FormResize(Sender: TObject);
@@ -82,6 +85,12 @@ begin
     lbl_NomeCad.Margins.Top := 15;
     img_CadText.Margins.Top := 25;
   end;
+end;
+
+procedure Tf_Cadastro.FormShow(Sender: TObject);
+begin
+  ed_NomeCad.Clear;
+  ed_SenhaCad.Clear;
 end;
 
 end.

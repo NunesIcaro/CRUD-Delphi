@@ -1,25 +1,24 @@
 object DM: TDM
-  Height = 455
-  Width = 651
-  PixelsPerInch = 120
+  Height = 364
+  Width = 521
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
     VendorLib = 
-      'C:\Users\icaro\Desktop\CRUD-DELPHI\CRUD-Delphi\Win32\Debug\lib\l' +
-      'ibpq.dll'
-    Left = 110
-    Top = 120
+      'C:\Users\'#205'caro Nunes\Desktop\CRUD-Delphi\Win32\Debug\lib\libpq.d' +
+      'll'
+    Left = 88
+    Top = 96
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
-      'Database=postgres'
+      'Database=CRUD_db'
       'User_Name=postgres'
       'Password=root'
       'Server=localhost'
       'DriverID=PG')
     Connected = True
     LoginPrompt = False
-    Left = 110
-    Top = 268
+    Left = 88
+    Top = 214
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
@@ -28,20 +27,20 @@ object DM: TDM
     SQL.Strings = (
       ''
       '')
-    Left = 240
-    Top = 120
+    Left = 192
+    Top = 96
   end
   object DataSource1: TDataSource
     DataSet = FDQuery1
-    Left = 242
-    Top = 260
+    Left = 194
+    Top = 208
   end
   object FDQuery2: TFDQuery
     Active = True
     Connection = FDConnection1
     SQL.Strings = (
       'SELECT * FROM vw_geral;')
-    Left = 312
-    Top = 118
+    Left = 250
+    Top = 94
   end
 end

@@ -27,6 +27,7 @@ type
     procedure FormResize(Sender: TObject);
     procedure lbl_btn_CadClick(Sender: TObject);
     procedure btn_EntrarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
 
 
 
@@ -52,35 +53,33 @@ procedure Tf_Login.btn_EntrarClick(Sender: TObject);
 var Login : Tlogin;
 begin
   Login := Tlogin.Create;
-  try
-    Login.pNomeLog := ed_User.Text;
-    Login.pSenhaLog := ed_Password.Text;
 
-
-    if TLoginDAO.ValidarLogin(Login,DM.FDConnection1) then begin
-      ShowMessage('Conectado com Sucesso');
-    end else begin
-      ShowMessage('Usuário ou Senha Incorretos');
+    try
+      Login.pNomeLog := ed_User.Text;
+      Login.pSenhaLog := ed_Password.Text;
+      if TLoginDAO.ValidarLogin(Login,DM.FDConnection1) then begin
+        ShowMessage('Conectado com Sucesso');
+        f_Login.Hide;
+        f_Main.Show;
+      end else if ((Login.pNomeLog = '') or (Login.pSenhaLog ='')) then begin
+        ShowMessage('Um ou mais campos estão vazios, preencha-os!!');
+      end else begin
+        ShowMessage('Usuário ou Senha Incorretos');
+        ed_User.Clear;
+        ed_Password.Clear;
+      end;
+    finally
+        Login.Free;
     end;
-
-  finally
-    Login.Free;
-  end;
-  f_Login.Hide;
-  f_Main.Show;
-
 
 end;
 
 procedure Tf_Login.FormCreate(Sender: TObject);
 begin
   WindowState := wsMaximized;
+  ed_User.Clear;
+  ed_Password.Clear;
 end;
-
-
-
-
-
 
 procedure Tf_Login.FormResize(Sender: TObject);
 begin
@@ -107,10 +106,17 @@ begin
   end;
 end;
 
+procedure Tf_Login.FormShow(Sender: TObject);
+begin
+  ed_User.Clear;
+  ed_Password.Clear;
+end;
+
 procedure Tf_Login.lbl_btn_CadClick(Sender: TObject);
 begin
   f_Login.Hide;
   f_Cadastro.ShowModal;
+
 end;
 
 end.

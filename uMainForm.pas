@@ -111,6 +111,7 @@ type
     procedure SP_Btn_Sair5Click(Sender: TObject);
     procedure btn_EditarClick(Sender: TObject);
     procedure btn_DeletarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
 
   private
     { Private declarations }
@@ -136,7 +137,7 @@ begin
 
   for I := 0 to aQuery.FieldCount - 1 do begin
     aStringGrid.Cells[I, 0] := aQuery.Fields[I].FieldName;
-    aStringGrid.ColWidths[I] := 200;
+    aStringGrid.ColWidths[I] := 150;
   end;
 
   rowIndex := 1;
@@ -519,9 +520,19 @@ end;
 procedure Tf_Main.FormCreate(Sender: TObject);
 begin
    AtualizarStringGrid(DM.FDQuery2,StringGridG);
+   WindowState := wsMaximized;
 end;
 
 
+
+procedure Tf_Main.FormShow(Sender: TObject);
+begin
+  if(WindowState = wsMaximized) then begin
+    StringGridG.Height := 529;
+  end else begin
+    StringGridG.Height := 329;
+  end;
+end;
 
 procedure Tf_Main.img_CrudPClick(Sender: TObject);
 begin
@@ -531,7 +542,7 @@ begin
   btn_editar.Hide;
   btn_deletar.Hide;
   btn_Adicionar.Hide;
-  StringGridG.Height:= 415;
+  StringGridG.Height:= 329;
   ed_Search.Show;
   DM.FDQuery2.Close;
   Dm.FDQuery2.Open;
@@ -548,7 +559,7 @@ begin
   btn_editar.Show;
   btn_deletar.Show;
   btn_Adicionar.Show;
-  StringGridG.Height := 431;
+  StringGridG.Height := 369;
   pnl_btn_Disc.Color := RGB(173, 216, 230);
   pnl_TabelaGeral.Show;
   DM.FDQuery2.Close;
@@ -579,7 +590,7 @@ begin
   btn_editar.Show;
   btn_deletar.Show;
   btn_Adicionar.Show;
-  StringGridG.Height := 431;
+  StringGridG.Height := 369;
   pnl_btn_Estu.Color := RGB(173, 216, 230);
   pnl_TabelaGeral.Show;
   DM.FDQuery2.Close;
@@ -626,7 +637,7 @@ begin
     btn_editar.Show;
     btn_deletar.Show;
     btn_Adicionar.Show;
-    StringGridG.Height := 431;
+    StringGridG.Height := 369;
     pnl_btn_Matri.Color := RGB(173, 216, 230);
     pnl_TabelaGeral.Show;
     DM.FDQuery2.Close;
@@ -657,7 +668,7 @@ begin
     btn_editar.Show;
     btn_deletar.Show;
     btn_Adicionar.Show;
-    StringGridG.Height := 431;
+    StringGridG.Height := 369;
     pnl_btn_Prof.Color := RGB(173, 216, 230);
     pnl_TabelaGeral.Show;
     DM.FDQuery2.Close;
@@ -688,7 +699,7 @@ begin
     btn_editar.Show;
     btn_deletar.Show;
     btn_Adicionar.Show;
-    StringGridG.Height := 431;
+    StringGridG.Height := 369;
     pnl_btn_Turmas.Color := RGB(173, 216, 230);
     pnl_TabelaGeral.Show;
     DM.FDQuery2.Close;
