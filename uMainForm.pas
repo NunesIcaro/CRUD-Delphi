@@ -175,16 +175,33 @@ end;
 
 procedure Tf_Main.btn_ConcluirDClick(Sender: TObject);
 var Disciplina: TDisciplinas;
+    linhaSelect: Integer;
 begin
 
    Disciplina := TDisciplinas.Create;
-   Try
-     Disciplina.pNomeDisc := ed_NomeD.Text;
-     Disciplina.pCodigoProfDisc := StrToInt(ed_IDProfD.Text);
+   If (lbl_PnlAdicionarD.Caption = 'Editar') then begin
+      linhaSelect := StringGridG.Row;
+      Disciplina.pCodigoDisc := StrToInt(StringGridG.Cells[0,linhaSelect]);
+      Disciplina.pNomeDisc := ed_NomeD.Text;
+      Disciplina.pCodigoProfDisc := StrToInt(ed_IDProfD.Text);
+
+      TDisciplinasDAO.Editar(Disciplina,DM.FDConnection1);
+      Disciplina.Free;
+      DM.FDQuery2.Close;
+      DM.FDQuery2.Open;
+      AtualizarStringGrid(DM.FDQuery2,StringGridG);
+      pnl_AdicionarD.Hide;
+      ed_NomeD.Clear;
+      ed_IDProfD.Clear;
+      lbl_pnlAdicionarD.caption := 'Adicionar';
+   end else begin
+     Try
+      Disciplina.pNomeDisc := ed_NomeD.Text;
+      Disciplina.pCodigoProfDisc := StrToInt(ed_IDProfD.Text);
 
 
-     TDisciplinasDAO.Adicionar(Disciplina,DM.FDConnection1);
-   Finally
+      TDisciplinasDAO.Adicionar(Disciplina,DM.FDConnection1);
+    Finally
       Disciplina.Free;
       DM.FDQuery2.Close;
       DM.FDQuery2.Open;
@@ -193,6 +210,8 @@ begin
       ed_NomeD.Clear;
       ed_IDProfD.Clear;
    end;
+   end;
+
 end;
 
 procedure Tf_Main.btn_ConcluirEClick(Sender: TObject);
@@ -217,7 +236,7 @@ begin
      ed_TurmaE.Clear;
      ed_NomeE.Clear;
      ed_CpfE.Clear;
-     lbl_pnlAdicionarE.caption := 'Adicionar';
+     lbl_pnlAdicionarP.caption := 'Adicionar';
    end else begin
      Try
      Estudante.TurmaID := StrToInt(ed_TurmaE.Text);
@@ -244,15 +263,32 @@ end;
 
 procedure Tf_Main.btn_ConcluirMClick(Sender: TObject);
 var Matricula: TMatriculas;
+    linhaSelect: Integer;
 begin
 
    Matricula := TMatriculas.Create;
-   Try
-     Matricula.pCodigoTurmaM := StrToInt(ed_IDTurmaM.Text);
-     Matricula.pCodigoEstuM := StrToInt(ed_IDEstuM.Text);
+   If (lbl_PnlAdicionarM.Caption = 'Editar') then begin
+      linhaSelect := StringGridG.Row;
+      Matricula.pCodigoMatri := StrToInt(StringGridG.Cells[0,linhaSelect]);
+      Matricula.pCodigoTurmaM := StrToInt(ed_IDTurmaM.Text);
+      Matricula.pCodigoEstuM := StrToInt(ed_IDEstuM.Text);
 
-     TMatriculasDAO.Adicionar(Matricula, DM.FDConnection1)
-   Finally
+      TMatriculasDAO.Editar(Matricula,DM.FDConnection1);
+      Matricula.Free;
+      DM.FDQuery2.Close;
+      DM.FDQuery2.Open;
+      AtualizarStringGrid(DM.FDQuery2,StringGridG);
+      pnl_AdicionarM.Hide;
+      ed_IDTurmaM.Clear;
+      ed_IDEstuM.Clear;
+      lbl_pnlAdicionarM.caption := 'Adicionar';
+   end else begin
+    Try
+      Matricula.pCodigoTurmaM := StrToInt(ed_IDTurmaM.Text);
+      Matricula.pCodigoEstuM := StrToInt(ed_IDEstuM.Text);
+
+      TMatriculasDAO.Adicionar(Matricula, DM.FDConnection1)
+    Finally
       Matricula.Free;
       DM.FDQuery2.Close;
       DM.FDQuery2.Open;
@@ -261,13 +297,32 @@ begin
       ed_IDTurmaM.Clear;
       ed_IDEstuM.Clear;
    end;
+   end;
+
 end;
 
 procedure Tf_Main.btn_ConcluirPClick(Sender: TObject);
 var Professor: TProfessores;
+    linhaSelect: Integer;
 begin
    Professor := TProfessores.Create;
-   Try
+   If (lbl_PnlAdicionarP.Caption = 'Editar') then begin
+     linhaSelect := StringGridG.Row;
+     Professor.IDProfessores := StrToInt(StringGridG.Cells[0,linhaSelect]);
+     Professor.pNome := ed_NomeP.Text;
+     Professor.pCPF := ed_CpfP.Text;
+
+     TProfessoresDAO.Editar(Professor,DM.FDConnection1);
+     Professor.Free;
+     DM.FDQuery2.Close;
+     DM.FDQuery2.Open;
+     AtualizarStringGrid(DM.FDQuery2,StringGridG);
+     pnl_AdicionarP.Hide;
+     ed_NomeP.Clear;
+     ed_CpfP.Clear;
+     lbl_pnlAdicionarP.caption := 'Adicionar';
+   end else begin
+     Try
      Professor.pNome := ed_NomeP.Text;
      Professor.pCPF := ed_CpfP.Text;
 
@@ -278,9 +333,11 @@ begin
       DM.FDQuery2.Open;
       AtualizarStringGrid(DM.FDQuery2,StringGridG);
       pnl_AdicionarP.Hide;
-      ed_NomeP.Clear;
-      ed_CpfP.Clear;
+
    end;
+
+   end;
+
 
 end;
 
@@ -288,15 +345,33 @@ end;
 
 procedure Tf_Main.btn_ConcluirTClick(Sender: TObject);
 var Turma: TTurmas;
+    linhaSelect: Integer;
 begin
    Turma:= TTurmas.Create;
-   Try
+   If (lbl_PnlAdicionarT.Caption = 'Editar') then begin
+     linhaSelect := StringGridG.Row;
+     Turma.pCodigoTurma := StrToInt(StringGridG.Cells[0,linhaSelect]);
+     Turma.pNomeTurma := ed_NomeT.Text;
+     Turma.pCodigoProfT := StrToInt(ed_IDProfT.Text);
+     Turma.pCodigoDiscT := StrToInt(ed_IDDiscT.Text);
+     TTurmasDAO.Editar(Turma,DM.FDConnection1);
+     Turma.Free;
+     DM.FDQuery2.Close;
+     DM.FDQuery2.Open;
+     AtualizarStringGrid(DM.FDQuery2,StringGridG);
+     pnl_AdicionarT.Hide;
+     ed_NomeT.Clear;
+     ed_IDProfT.Clear;
+     ed_IDDiscT.Clear;
+     lbl_pnlAdicionarT.caption := 'Adicionar';
+   end else begin
+    Try
      Turma.pNomeTurma := ed_NomeT.Text;
      Turma.pCodigoProfT := StrToInt(ed_IDProfT.Text);
      Turma.pCodigoDiscT := StrToInt(ed_IDDiscT.Text);
 
      TTurmasDAO.Adicionar(Turma,DM.FDConnection1);
-   Finally
+    Finally
       Turma.Free;
       DM.FDQuery2.Close;
       DM.FDQuery2.Open;
@@ -305,6 +380,8 @@ begin
       ed_NomeT.Clear;
       ed_IDProfT.Clear;
       ed_IDDiscT.Clear;
+   end;
+
    end;
 
 end;
@@ -326,8 +403,6 @@ begin
   if (PanelOpen = 'Estudantes') then begin
     linhaSelect := StringGridG.Row;
     Estudante.IDEstudantes := StrToInt(StringGridG.Cells[0,linhaSelect]);
-    ShowMessage('O valor do ID lido da grade é: ' + StringGridG.Cells[0,linhaSelect]);
-    ShowMessage('O índice da linha selecionada é: ' + IntToStr(linhaSelect));
     TEstudantesDAO.Excluir(Estudante,DM.FDConnection1);
     Estudante.Free;
     DM.FDQuery2.Close;
@@ -335,13 +410,37 @@ begin
     AtualizarStringGrid(DM.FDQuery2,StringGridG);
 
   end else if (PanelOpen = 'Professores') then begin
-    pnl_AdicionarP.Show;
+    linhaSelect := StringGridG.Row;
+    Professor.IDProfessores := StrToInt(StringGridG.Cells[0,linhaSelect]);
+    TProfessoresDAO.Excluir(Professor,DM.FDConnection1);
+    Professor.Free;
+    DM.FDQuery2.Close;
+    DM.FDQuery2.Open;
+    AtualizarStringGrid(DM.FDQuery2,StringGridG);
   end else if (PanelOpen = 'Disciplinas') then begin
-    pnl_AdicionarD.Show;
+    linhaSelect := StringGridG.Row;
+    Disciplina.pCodigoDisc := StrToInt(StringGridG.Cells[0,linhaSelect]);
+    TDisciplinasDAO.Excluir(Disciplina,DM.FDConnection1);
+    Disciplina.Free;
+    DM.FDQuery2.Close;
+    DM.FDQuery2.Open;
+    AtualizarStringGrid(DM.FDQuery2,StringGridG);
   end else if (PanelOpen = 'Matriculas') then begin
-    pnl_AdicionarM.Show;
+    linhaSelect := StringGridG.Row;
+    Matricula.pCodigoMatri := StrToInt(StringGridG.Cells[0,linhaSelect]);
+    TMatriculasDAO.Excluir(Matricula,DM.FDConnection1);
+    Matricula.Free;
+    DM.FDQuery2.Close;
+    DM.FDQuery2.Open;
+    AtualizarStringGrid(DM.FDQuery2,StringGridG);
   end else if (PanelOpen = 'Turmas') then begin
-    pnl_AdicionarT.Show;
+    linhaSelect := StringGridG.Row;
+    Turma.pCodigoTurma:= StrToInt(StringGridG.Cells[0,linhaSelect]);
+    TTurmasDAO.Excluir(Turma,DM.FDConnection1);
+    Turma.Free;
+    DM.FDQuery2.Close;
+    DM.FDQuery2.Open;
+    AtualizarStringGrid(DM.FDQuery2,StringGridG);
   end;
 
 
@@ -370,22 +469,38 @@ begin
     ed_NomeE.Text := StringGridG.Cells[1,linhaSelect];
     ed_CpfE.Text := StringGridG.Cells[2,linhaSelect] ;
     ed_TurmaE.Text := StringGridG.Cells[3,linhaSelect];
-    ShowMessage('O valor do ID lido da grade é: ' + StringGridG.Cells[0,linhaSelect]);
-    ShowMessage('O índice da linha selecionada é: ' + IntToStr(linhaSelect));
-
 
   end else if (PanelOpen = 'Professores') then begin
     pnl_AdicionarP.Show;
+    linhaSelect := StringGridG.Row;
     lbl_pnlAdicionarP.caption := 'Editar';
+    Professor.IDProfessores := StrToInt(StringGridG.Cells[0,linhaSelect]);
+    ed_NomeP.Text := StringGridG.Cells[1,linhaSelect];
+    ed_CpfP.Text := StringGridG.Cells[2,linhaSelect];
   end else if (PanelOpen = 'Disciplinas') then begin
     pnl_AdicionarD.Show;
+    linhaSelect := StringGridG.Row;
     lbl_pnlAdicionarD.caption := 'Editar';
+    Disciplina.pCodigoDisc := StrToInt(StringGridG.Cells[0,linhaSelect]);
+    ed_NomeD.Text := StringGridG.Cells[1,linhaSelect];
+    ed_IDProfD.Text := StringGridG.Cells[2,linhaSelect];
+
+
   end else if (PanelOpen = 'Matriculas') then begin
     pnl_AdicionarM.Show;
+    linhaSelect := StringGridG.Row;
     lbl_pnlAdicionarM.caption := 'Editar';
+    Matricula.pCodigoMatri := StrToInt(StringGridG.Cells[0,linhaSelect]);
+    ed_IDEstuM.Text := StringGridG.Cells[1,linhaSelect];
+    ed_IDTurmaM.Text := StringGridG.Cells[2,linhaSelect] ;
   end else if (PanelOpen = 'Turmas') then begin
     pnl_AdicionarT.Show;
+    linhaSelect := StringGridG.Row;
     lbl_pnlAdicionarT.caption := 'Editar';
+    Turma.pCodigoTurma := StrToInt(StringGridG.Cells[0,linhaSelect]);
+    ed_NomeT.Text := StringGridG.Cells[1,linhaSelect];
+    ed_IDProfT.Text := StringGridG.Cells[2,linhaSelect] ;
+    ed_IDDiscT.Text := StringGridG.Cells[3,linhaSelect];
   end;
 end;
 

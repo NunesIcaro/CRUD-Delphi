@@ -2,7 +2,7 @@ unit uMatriculasDAO;
 
 interface
 
-uses uMatriculas, FireDac.Comp.Client, System.SysUtils, FireDac.Stan.Param;
+uses uMatriculas, FireDac.Comp.Client, System.SysUtils, FireDac.Stan.Param,Data.DB;
 
 type
   TMatriculasDAO = class
@@ -47,7 +47,8 @@ begin
     Query.SQL.Text := 'UPDATE matriculas SET matri_turma_codigo = :CodigoTurma, matri_estu_codigo = :CodigoEstudante WHERE matri_codigo = :Codigo';
     Query.ParamByName('CodigoTurma').AsInteger := aMatriculas.pCodigoTurmaM;
     Query.ParamByName('CodigoEstudante').AsInteger := aMatriculas.pCodigoEstuM;
-    Query.ParamByName('matri_codigo').AsInteger := aMatriculas.pCodigoMatri;
+    Query.ParamByName('Codigo').DataType := ftInteger;
+    Query.ParamByName('Codigo').AsInteger := aMatriculas.pCodigoMatri;
 
     Query.ExecSQL;
   finally
@@ -64,7 +65,7 @@ begin
   try
     Query.Connection := aConnection;
     Query.SQL.Text := 'DELETE FROM matriculas WHERE matri_codigo = :Codigo';
-    Query.ParamByName('matri_codigo').AsInteger := aMatriculas.pCodigoMatri;
+    Query.ParamByName('Codigo').AsInteger := aMatriculas.pCodigoMatri;
     Query.ExecSQL;
   finally
     Query.Free;
