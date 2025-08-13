@@ -22,18 +22,13 @@ type
     img_fundo: TImage;
     pnl_Tabela: TPanel;
     ed_Search: TEdit;
-    CBX_Turmas: TCheckBox;
-    CBX_Matriculas: TCheckBox;
-    CBX_Estudantes: TCheckBox;
-    CBX_Professores: TCheckBox;
-    CBX_Disciplinas: TCheckBox;
     StringGrid1: TStringGrid;
     pnl_Adicionar: TPanel;
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
     Panel1: TPanel;
-    Label1: TLabel;
+    lbl_PnlAdicionar: TLabel;
     SpeedButton1: TSpeedButton;
     ed_Nome: TEdit;
     Button1: TButton;
@@ -44,6 +39,8 @@ type
     procedure pnl_btn_EstuClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure ed_SearchChange(Sender: TObject);
+    procedure pnl_btn_EstuMouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
   private
     { Private declarations }
   public
@@ -107,6 +104,7 @@ begin
       AtualizarStringGrid(DM.FDQuery2,StringGrid1);
       pnl_Adicionar.Hide
    end;
+   pnl_btn_Estu.Color := RGB(240, 248, 255);
 end;
 
 
@@ -117,8 +115,10 @@ var SearchIS: String;
 
 begin
   SearchIS := ed_Search.Text;
-
-  TMainDAO.PesquisarGeral(DM.FDConnection1, DM.FDQuery1,SearchIS)
+  DM.FDQuery2.Close;
+  TMainDAO.PesquisarGeral(DM.FDConnection1, DM.FDQuery2,SearchIS);
+  DM.FDQuery2.Open;
+  AtualizarStringGrid(DM.FDQuery2,StringGrid1);
 end;
 
 procedure Tf_Main.FormCreate(Sender: TObject);
@@ -132,11 +132,19 @@ end;
 procedure Tf_Main.pnl_btn_EstuClick(Sender: TObject);
 begin
   pnl_Adicionar.Show;
+  pnl_btn_Estu.Color := RGB(173, 216, 230);
+end;
+
+procedure Tf_Main.pnl_btn_EstuMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+begin
+  pnl_btn_Estu.Color := RGB(173, 216, 230);
 end;
 
 procedure Tf_Main.SpeedButton1Click(Sender: TObject);
 begin
   pnl_Adicionar.Hide;
+  pnl_btn_Estu.Color := RGB(240, 248, 255);
 end;
 
 end.
