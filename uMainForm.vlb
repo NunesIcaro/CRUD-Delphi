@@ -36,12 +36,12 @@ Coordinates=335,10,74,58
 [DM.FDQuery1]
 Coordinates=397,87,97,58
 
-[pnl_Tabela]
-Coordinates=118,1,78,58
-
 [DM.DataSource1]
 Coordinates=549,155,113,36
 
 [ed_Search]
 Coordinates=234,155,76,58
+
+[pnl_TabelaGeral]
+Coordinates=118,1,78,58
 

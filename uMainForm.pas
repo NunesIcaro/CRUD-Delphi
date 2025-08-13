@@ -20,40 +20,51 @@ type
     pnl_btn_Turmas: TPanel;
     img_CrudP: TImage;
     img_fundo: TImage;
-    pnl_Tabela: TPanel;
+    pnl_TabelaGeral: TPanel;
     ed_Search: TEdit;
-    StringGrid1: TStringGrid;
-    pnl_Adicionar: TPanel;
+    StringGridG: TStringGrid;
+    pnl_btn_Logout: TPanel;
+    btn_Editar: TButton;
+    btn_Deletar: TButton;
+    btn_Adicionar: TButton;
+    pnl_AdicionarE: TPanel;
     lbl_NomeE: TLabel;
     lbl_CpfE: TLabel;
     lbl_TurmaE: TLabel;
-    Panel1: TPanel;
-    lbl_PnlAdicionar: TLabel;
-    SpeedButton1: TSpeedButton;
+    pnl_CbcE: TPanel;
+    lbl_PnlAdicionarE: TLabel;
+    SP_btn_Sair: TSpeedButton;
     ed_NomeE: TEdit;
     btn_ConcluirE: TButton;
     ed_CpfE: TEdit;
     ed_TurmaE: TEdit;
-    Panel2: TPanel;
+    pnl_AdicionarP: TPanel;
+    lbl_NomeP: TLabel;
+    lbl_CpfP: TLabel;
+    pnl_CbcP: TPanel;
+    lbl_PnlAdicionarP: TLabel;
+    SP_btn_Sair2: TSpeedButton;
+    ed_NomeP: TEdit;
+    btn_ConcluirP: TButton;
+    ed_CpfP: TEdit;
     procedure FormCreate(Sender: TObject);
-    procedure SpeedButton1Click(Sender: TObject);
-    procedure pnl_btn_EstuClick(Sender: TObject);
+    procedure SP_btn_SairClick(Sender: TObject);
     procedure btn_ConcluirEClick(Sender: TObject);
     procedure ed_SearchChange(Sender: TObject);
-    procedure pnl_btn_EstuMouseMove(Sender: TObject; Shift: TShiftState; X,
-      Y: Integer);
+    procedure pnl_btn_EstuClick(Sender: TObject);
+    procedure pnl_btn_EstuMouseEnter(Sender: TObject);
+    procedure pnl_btn_EstuMouseLeave(Sender: TObject);
+    procedure pnl_btn_LogoutClick(Sender: TObject);
+    procedure btn_ConcluirPClick(Sender: TObject);
     procedure pnl_btn_ProfClick(Sender: TObject);
-    procedure pnl_btn_ProfMouseMove(Sender: TObject; Shift: TShiftState; X,
-      Y: Integer);
+    procedure img_CrudPClick(Sender: TObject);
+    procedure btn_AdicionarEClick(Sender: TObject);
+    procedure btn_EditarEClick(Sender: TObject);
+    procedure btn_DeletarEClick(Sender: TObject);
     procedure pnl_btn_DiscClick(Sender: TObject);
-    procedure pnl_btn_DiscMouseMove(Sender: TObject; Shift: TShiftState; X,
-      Y: Integer);
     procedure pnl_btn_MatriClick(Sender: TObject);
-    procedure pnl_btn_MatriMouseMove(Sender: TObject; Shift: TShiftState; X,
-      Y: Integer);
     procedure pnl_btn_TurmasClick(Sender: TObject);
-    procedure pnl_btn_TurmasMouseMove(Sender: TObject; Shift: TShiftState; X,
-      Y: Integer);
+
   private
     { Private declarations }
   public
@@ -66,7 +77,8 @@ var
 implementation
 
 {$R *.dfm}
-uses uMainDAO;
+uses uMainDAO, uLoginForm;
+
 
 procedure AtualizarStringGrid(aQuery: TDataSet; aStringGrid: TStringGrid);
 var I: Integer;
@@ -88,9 +100,15 @@ begin
     end;
     aQuery.Next;
   end;
+//  if aStringGrid.row[0] then
 
 
 end;
+procedure Tf_Main.btn_AdicionarEClick(Sender: TObject);
+begin
+  pnl_AdicionarE.Show;
+end;
+
 procedure Tf_Main.btn_ConcluirEClick(Sender: TObject);
 var Estudante: TEstudantes;
 begin
@@ -106,8 +124,8 @@ begin
       Estudante.Free;
       DM.FDQuery2.Close;
       DM.FDQuery2.Open;
-      AtualizarStringGrid(DM.FDQuery2,StringGrid1);
-      pnl_Adicionar.Hide
+      AtualizarStringGrid(DM.FDQuery2,StringGridG);
+      pnl_AdicionarE.Hide
    end;
    pnl_btn_Estu.Color := RGB(240, 248, 255);
 end;
@@ -115,84 +133,167 @@ end;
 
 
 
+procedure Tf_Main.btn_ConcluirPClick(Sender: TObject);
+var Professor: TProfessores;
+begin
+   Professor := TProfessores.Create;
+   Try
+     Professor.pNome := ed_NomeP.Text;
+     Professor.pCPF := ed_CpfP.Text;
+
+     TProfessoresDAO.Adicionar(Professor,DM.FDConnection1);
+   Finally
+      Professor.Free;
+      DM.FDQuery2.Close;
+      DM.FDQuery2.Open;
+      AtualizarStringGrid(DM.FDQuery2,StringGridG);
+      pnl_AdicionarP.Hide;
+   end;
+   pnl_btn_Prof.Color := RGB(240, 248, 255);
+end;
+
+
+
+procedure Tf_Main.btn_DeletarEClick(Sender: TObject);
+begin
+//  TEstudantesDAO.Excluir(Estudante,DM.FDConnection1)
+end;
+
+procedure Tf_Main.btn_EditarEClick(Sender: TObject);
+begin
+  pnl_AdicionarE.Show;
+  lbl_pnlAdicionarE.caption := 'Editar';
+  lbl_pnlAdicionarE.caption := 'Adicionar';
+end;
+
 procedure Tf_Main.ed_SearchChange(Sender: TObject);
 var SearchIS: String;
 
 begin
+  DM.FDQuery2.SQL.Text := 'SELECT * FROM vw_geral';
   SearchIS := ed_Search.Text;
   DM.FDQuery2.Close;
   TMainDAO.PesquisarGeral(DM.FDConnection1, DM.FDQuery2,SearchIS);
   DM.FDQuery2.Open;
-  AtualizarStringGrid(DM.FDQuery2,StringGrid1);
+  AtualizarStringGrid(DM.FDQuery2,StringGridG);
 end;
 
 procedure Tf_Main.FormCreate(Sender: TObject);
 begin
+   AtualizarStringGrid(DM.FDQuery2,StringGridG);
+end;
 
-   AtualizarStringGrid(DM.FDQuery2,StringGrid1);
 
 
+procedure Tf_Main.img_CrudPClick(Sender: TObject);
+begin
+  DM.FDQuery2.SQL.Text := 'SELECT * FROM vw_geral';
+  pnl_tabelaGeral.Show;
+  btn_editar.Hide;
+  btn_deletar.Hide;
+  btn_Adicionar.Hide;
+  DM.FDQuery2.Close;
+  Dm.FDQuery2.Open;
+  AtualizarStringGrid(DM.FDQuery2,StringGridG);
 end;
 
 procedure Tf_Main.pnl_btn_DiscClick(Sender: TObject);
 begin
-  pnl_btn_Estu.Color := RGB(173, 216, 230);
-end;
+  DM.FDQuery2.SQL.Text := 'SELECT disc_codigo as "ID Disciplina", '+
+    'disc_nome as "Nome Disciplina", '+
+    'disc_prof_codigo as "ID Professor" FROM disciplinas';
 
-procedure Tf_Main.pnl_btn_DiscMouseMove(Sender: TObject; Shift: TShiftState; X,
-  Y: Integer);
-begin
-  pnl_btn_Estu.Color := RGB(173, 216, 230);
+
+  pnl_btn_Disc.Color := RGB(173, 216, 230);
+  pnl_TabelaGeral.Show;
+  DM.FDQuery2.Close;
+  DM.FDQuery2.Open;
+  AtualizarStringGrid(DM.FDQuery2,StringGridG);
+
 end;
 
 procedure Tf_Main.pnl_btn_EstuClick(Sender: TObject);
 begin
-  pnl_Adicionar.Show;
+  DM.FDQuery2.SQL.Text := 'SELECT estu_codigo as "ID Estudante", '+
+    'estu_nome as "Nome Estudante", '+
+    'estu_cpf as "CPF Estudante" FROM estudantes';
+
+
   pnl_btn_Estu.Color := RGB(173, 216, 230);
+  pnl_TabelaGeral.Show;
+  DM.FDQuery2.Close;
+  DM.FDQuery2.Open;
+  AtualizarStringGrid(DM.FDQuery2,StringGridG);
 end;
 
-procedure Tf_Main.pnl_btn_EstuMouseMove(Sender: TObject; Shift: TShiftState; X,
-  Y: Integer);
+procedure Tf_Main.pnl_btn_EstuMouseEnter(Sender: TObject);
 begin
   pnl_btn_Estu.Color := RGB(173, 216, 230);
+
+
+end;
+
+procedure Tf_Main.pnl_btn_EstuMouseLeave(Sender: TObject);
+begin
+   if not pnl_TabelaGeral.Visible then begin
+    pnl_btn_Estu.Color := RGB(240, 248, 255);
+  end;
+end;
+
+procedure Tf_Main.pnl_btn_LogoutClick(Sender: TObject);
+begin
+
+  f_Main.Hide;
+  f_Login.Show;
 end;
 
 procedure Tf_Main.pnl_btn_MatriClick(Sender: TObject);
 begin
-  pnl_btn_Estu.Color := RGB(173, 216, 230);
-end;
+  DM.FDQuery2.SQL.Text := 'SELECT matri_codigo as "ID Matrícula", '+
+    'matri_turma_codigo as "ID Turma", '+
+    'matri_estu_codigo as "ID Estudante" FROM matriculas';
+;
 
-procedure Tf_Main.pnl_btn_MatriMouseMove(Sender: TObject; Shift: TShiftState; X,
-  Y: Integer);
-begin
-  pnl_btn_Estu.Color := RGB(173, 216, 230);
+
+    pnl_btn_Matri.Color := RGB(173, 216, 230);
+    pnl_TabelaGeral.Show;
+    DM.FDQuery2.Close;
+    DM.FDQuery2.Open;
+    AtualizarStringGrid(DM.FDQuery2,StringGridG);
 end;
 
 procedure Tf_Main.pnl_btn_ProfClick(Sender: TObject);
 begin
-  pnl_btn_Estu.Color := RGB(173, 216, 230);
-end;
+  DM.FDQuery2.SQL.Text := 'SELECT prof_codigo as "ID Professor", '+
+    'prof_nome as "Nome Professor", '+
+    'prof_cpf as "CPF Professor" FROM professores';
 
-procedure Tf_Main.pnl_btn_ProfMouseMove(Sender: TObject; Shift: TShiftState; X,
-  Y: Integer);
-begin
-   pnl_btn_Prof.Color := RGB(173, 216, 230);
+
+    pnl_btn_Prof.Color := RGB(173, 216, 230);
+    pnl_TabelaGeral.Show;
+    DM.FDQuery2.Close;
+    DM.FDQuery2.Open;
+    AtualizarStringGrid(DM.FDQuery2,StringGridG);
 end;
 
 procedure Tf_Main.pnl_btn_TurmasClick(Sender: TObject);
 begin
-  pnl_btn_Estu.Color := RGB(173, 216, 230);
+  DM.FDQuery2.SQL.Text := 'SELECT turmas_codigo as "ID Turma", '+
+    'turmas_nome as "Nome Turma", '+
+    'turmas_disc_codigo as "ID Disciplina",' +
+    'turmas_prof_codigo as "ID Professor" FROM turmas';
+
+
+    pnl_btn_Turmas.Color := RGB(173, 216, 230);
+    pnl_TabelaGeral.Show;
+    DM.FDQuery2.Close;
+    DM.FDQuery2.Open;
+    AtualizarStringGrid(DM.FDQuery2,StringGridG);
 end;
 
-procedure Tf_Main.pnl_btn_TurmasMouseMove(Sender: TObject; Shift: TShiftState;
-  X, Y: Integer);
+procedure Tf_Main.SP_btn_SairClick(Sender: TObject);
 begin
-  pnl_btn_Estu.Color := RGB(173, 216, 230);
-end;
-
-procedure Tf_Main.SpeedButton1Click(Sender: TObject);
-begin
-  pnl_Adicionar.Hide;
+  pnl_AdicionarE.Hide;
   pnl_btn_Estu.Color := RGB(240, 248, 255);
 end;
 

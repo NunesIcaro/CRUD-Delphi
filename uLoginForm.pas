@@ -8,7 +8,8 @@ uses
   FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.PG,
   FireDAC.Phys.PGDef, FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client,uDM, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
-  uCadastroForm, uLoginDAO, uLogin, uCadastro, uCadastroDAO, uMainForm;
+  uCadastroForm, uLoginDAO, uLogin, uCadastro, uCadastroDAO, uMainForm,
+  Vcl.Grids;
 
 type
   Tf_Login = class(TForm)
@@ -47,26 +48,6 @@ implementation
 
 {$R *.dfm}
 
-
-
-
-//procedure TForm1.btn_Salvar2Click(Sender: TObject);
-//var Professor: TProfessores;
-//begin
-//   Professor := TProfessores.Create;
-//   Try
-//     Professor.IDProfessores := StrToInt(edID_P.Text);
-//     Professor.pNome := edNome_P.Text;
-//     Professor.pCPF := edCPF_P.Text;
-//
-//     TProfessoresDAO.Inserir(Professor,DM.FDConnection1);
-//   Finally
-//      Professor.Free;
-//   end;
-//end;
-
-
-
 procedure Tf_Login.btn_EntrarClick(Sender: TObject);
 var Login : Tlogin;
 begin
@@ -86,7 +67,7 @@ begin
     Login.Free;
   end;
   f_Login.Hide;
-  f_Main.ShowModal;
+  f_Main.Show;
 
 
 end;

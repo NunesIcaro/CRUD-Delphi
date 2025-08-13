@@ -1,6 +1,6 @@
 object DM: TDM
-  Height = 600
-  Width = 800
+  Height = 455
+  Width = 651
   PixelsPerInch = 120
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
     VendorLib = 
@@ -40,8 +40,9 @@ object DM: TDM
     Active = True
     Connection = FDConnection1
     SQL.Strings = (
-      'SELECT * FROM vw_geral;')
-    Left = 320
-    Top = 230
+      'SELECT * FROM vw_geral;'
+      '')
+    Left = 312
+    Top = 118
   end
 end
