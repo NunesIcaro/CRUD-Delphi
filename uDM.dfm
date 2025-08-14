@@ -40,7 +40,7 @@ object DM: TDM
     Connection = FDConnection1
     SQL.Strings = (
       'SELECT * FROM vw_geral;')
-    Left = 250
-    Top = 94
+    Left = 258
+    Top = 110
   end
 end
